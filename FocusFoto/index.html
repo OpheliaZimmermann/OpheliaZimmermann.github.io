@@ -5,24 +5,22 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="theme-color" content="#17A2B8">
   <title>Focus Foto — Home</title>
-  <!-- cache-bust the CSS in case the old one was stuck -->
-  <link rel="stylesheet" href="./style.css?v=4" />
+  <link rel="stylesheet" href="./style.css?v=5" />
 </head>
 <body>
   <header>
     <div class="container">
       <nav>
-        <!-- Brand centered across the header -->
         <div class="brand">Focus Foto</div>
 
-        <!-- Three-dots menu (mobile) -->
+        <!-- menu toggle (only mobile) -->
         <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Ouvrir le menu">⋯</button>
 
-        <!-- Links panel (hidden on mobile until opened) -->
-        <div id="site-menu" class="nav-links" role="menu">
-          <a href="./index.html" aria-current="page" role="menuitem">Home</a>
-          <a href="./dist/about_me.html" role="menuitem">About</a>
-          <a href="./dist/contact.html" role="menuitem">Contact</a>
+        <!-- nav links -->
+        <div id="site-menu" class="nav-links">
+          <a href="./index.html">Home</a>
+          <a href="./dist/about_me.html">About</a>
+          <a href="./dist/contact.html">Contact</a>
         </div>
       </nav>
     </div>
@@ -32,45 +30,27 @@
     <h1>Gallerie</h1>
     <p class="lead">Aperçu de mon travail — portrait, paysage et divers évènements.</p>
 
-    <section class="gallery-grid" id="gallery">
+    <section class="gallery-grid">
       <a href="./dist/gallery/portrait.jpg" class="tile" data-title="Portrait">
-        <img src="./dist/gallery/portrait.jpg" alt="Portrait" loading="lazy" decoding="async">
+        <img src="./dist/gallery/portrait.jpg" alt="Portrait" loading="lazy">
       </a>
-
       <a href="./dist/gallery/barbie.jpg" class="tile" data-title="Joy">
-        <img src="./dist/gallery/barbie.jpg" alt="Joy" loading="lazy" decoding="async">
+        <img src="./dist/gallery/barbie.jpg" alt="Joy" loading="lazy">
       </a>
-
       <a href="./dist/gallery/piano.jpg" class="tile" data-title="Piano">
-        <img src="./dist/gallery/piano.jpg" alt="Piano" loading="lazy" decoding="async">
+        <img src="./dist/gallery/piano.jpg" alt="Piano" loading="lazy">
       </a>
-
       <a href="./dist/gallery/regard.jpg" class="tile" data-title="Love">
-        <img src="./dist/gallery/regard.jpg" alt="Love" loading="lazy" decoding="async">
+        <img src="./dist/gallery/regard.jpg" alt="Love" loading="lazy">
       </a>
-
       <a href="./dist/gallery/brouillard.jpg" class="tile" data-title="Brouillard">
-        <img src="./dist/gallery/brouillard.jpg" alt="Brouillard" loading="lazy" decoding="async">
+        <img src="./dist/gallery/brouillard.jpg" alt="Brouillard" loading="lazy">
       </a>
-
       <a href="./dist/gallery/well.jpg" class="tile" data-title="Couleur">
-        <img src="./dist/gallery/well.jpg" alt="Couleur" loading="lazy" decoding="async">
+        <img src="./dist/gallery/well.jpg" alt="Couleur" loading="lazy">
       </a>
-
       <a href="./dist/gallery/velo.jpg" class="tile" data-title="Mouvement">
-        <img src="./dist/gallery/velo.jpg" alt="Mouvement" loading="lazy" decoding="async">
-      </a>
-
-      <a href="./dist/gallery/fruits.jpg" class="tile" data-title="Brochette">
-        <img src="./dist/gallery/fruits.jpg" alt="Brochette" loading="lazy" decoding="async">
-      </a>
-
-      <a href="./dist/gallery/gateau.jpg" class="tile" data-title="Gâteau">
-        <img src="./dist/gallery/gateau.jpg" alt="Gâteau" loading="lazy" decoding="async">
-      </a>
-
-      <a href="./dist/gallery/landing_photo.jpg" class="tile" data-title="Paysage">
-        <img src="./dist/gallery/landing_photo.jpg" alt="Paysage" loading="lazy" decoding="async">
+        <img src="./dist/gallery/velo.jpg" alt="Mouvement" loading="lazy">
       </a>
     </section>
   </main>
@@ -83,7 +63,6 @@
     </div>
   </footer>
 
-  <!-- Lightbox -->
   <div class="lightbox" id="lightbox" aria-hidden="true">
     <button class="close" aria-label="Fermer">✕</button>
     <button class="prev" aria-label="Précédent">‹</button>
@@ -92,98 +71,20 @@
   </div>
 
   <script>
-  // Mobile menu
+  // menu mobile
   (function(){
-    const btn = document.querySelector('.menu-toggle');
-    const menu = document.getElementById('site-menu');
-
-    if(!btn || !menu){ return; } // safety
-
-    function closeMenu(){
-      menu.classList.remove('open');
-      btn.setAttribute('aria-expanded','false');
-      document.removeEventListener('click', outside);
-    }
-    function outside(e){
-      if(!menu.contains(e.target) && e.target !== btn){ closeMenu(); }
-    }
-
-    btn.addEventListener('click', ()=>{
-      const isOpen = menu.classList.toggle('open');
-      btn.setAttribute('aria-expanded', String(isOpen));
-      if(isOpen){
-        setTimeout(()=> document.addEventListener('click', outside), 0);
-      }else{
-        document.removeEventListener('click', outside);
-      }
+    const btn=document.querySelector('.menu-toggle');
+    const menu=document.getElementById('site-menu');
+    if(!btn||!menu)return;
+    const close=()=>{menu.classList.remove('open');btn.setAttribute('aria-expanded','false');};
+    btn.addEventListener('click',()=>{
+      const open=menu.classList.toggle('open');
+      btn.setAttribute('aria-expanded',open);
     });
-
-    // close on Esc and on menu link click
-    document.addEventListener('keydown', (e)=>{
-      if(e.key === 'Escape' && menu.classList.contains('open')) closeMenu();
+    document.addEventListener('keydown',e=>{
+      if(e.key==='Escape')close();
     });
-    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
-  })();
-
-  // Lightbox + swipe
-  (function(){
-    const tiles = Array.from(document.querySelectorAll('.tile'));
-    const lb = document.getElementById('lightbox');
-    const img = lb.querySelector('img');
-    const close = lb.querySelector('.close');
-    const prev = lb.querySelector('.prev');
-    const next = lb.querySelector('.next');
-    let i = 0;
-
-    function open(n){
-      i = n;
-      const a = tiles[i];
-      img.src = a.getAttribute('href');
-      img.alt = a.dataset.title || a.querySelector('img')?.alt || '';
-      lb.classList.add('open');
-      lb.setAttribute('aria-hidden','false');
-      document.body.style.overflow='hidden';
-    }
-    function closeLb(){
-      lb.classList.remove('open');
-      lb.setAttribute('aria-hidden','true');
-      document.body.style.overflow='';
-      img.src = '';
-    }
-    function step(d){
-      i = (i + d + tiles.length) % tiles.length;
-      open(i);
-    }
-
-    tiles.forEach((a,idx)=> a.addEventListener('click', e => { e.preventDefault(); open(idx); }));
-    close.addEventListener('click', closeLb);
-    prev.addEventListener('click', ()=>step(-1));
-    next.addEventListener('click', ()=>step(1));
-    lb.addEventListener('click', (e)=>{ if(e.target === lb) closeLb(); });
-    document.addEventListener('keydown', (e)=>{
-      if(!lb.classList.contains('open')) return;
-      if(e.key === 'Escape') closeLb();
-      if(e.key === 'ArrowLeft') step(-1);
-      if(e.key === 'ArrowRight') step(1);
-    });
-
-    // Swipe mobile
-    let sx = 0, sy = 0, touch = false;
-    lb.addEventListener('touchstart', (e)=>{
-      if(!lb.classList.contains('open')) return;
-      const t = e.changedTouches[0];
-      sx = t.clientX; sy = t.clientY; touch = true;
-    }, {passive:true});
-    lb.addEventListener('touchend', (e)=>{
-      if(!touch) return;
-      const t = e.changedTouches[0];
-      const dx = t.clientX - sx;
-      const dy = t.clientY - sy;
-      touch = false;
-      if(Math.abs(dx) > 40 && Math.abs(dy) < 60){
-        if(dx < 0) step(1); else step(-1);
-      }
-    });
+    menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',close));
   })();
   </script>
 </body>

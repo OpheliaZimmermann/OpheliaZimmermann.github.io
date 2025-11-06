@@ -7,20 +7,19 @@
   <link rel="stylesheet" href="../style.css" />
 </head>
 <body>
-    <header>
+  <header>
     <div class="container">
       <nav>
-        <!-- Brand centered across the header -->
         <div class="brand">Focus Foto</div>
 
-        <!-- Three-dots menu (mobile) -->
+        <!-- menu toggle (only mobile) -->
         <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Ouvrir le menu">⋯</button>
 
-        <!-- Links panel (hidden on mobile until opened) -->
-        <div id="site-menu" class="nav-links" role="menu">
-          <a href="./contact.html" aria-current="page" role="menuitem">Contact</a>
-          <a href="../index.html" role="menuitem">Home</a>
-          <a href="./about_me.html" role="menuitem">About</a>
+        <!-- nav links -->
+        <div id="site-menu" class="nav-links">
+          <a href="../index.html">Home</a>
+          <a href="../dist/about_me.html">About</a>
+          <a href="../dist/contact.html">Contact</a>
         </div>
       </nav>
     </div>
@@ -34,10 +33,10 @@
       <div class="card">
         <!-- NOTE: GitHub Pages has no backend. The form below opens the user's email client. 
              Replace the email with your own. For advanced handling, use a service like Formspree or Netlify Forms. -->
-        <form action="mailto:you@example.com" method="post" enctype="text/plain">
+        <form action="mailto:ophelia.zimmermann@protonmail.com" method="post" enctype="text/plain">
           <div class="form-row">
             <div>
-              <label for="name">Your name</label>
+              <label for="name">Votre nom et prénom</label>
               <input id="name" name="Name" type="text" required />
             </div>
             <div>
@@ -48,42 +47,33 @@
 
           <div class="form-row">
             <div>
-              <label for="date">Preferred date</label>
+              <label for="date">Date de l'évènement </label>
               <input id="date" name="Preferred date" type="date" />
             </div>
             <div>
-              <label for="location">Location</label>
-              <input id="location" name="Location" type="text" placeholder="Zurich, Bern, etc." />
+              <label for="location">Lieu</label>
+              <input id="location" name="Location" type="text" placeholder="Genève, Nyon, Lausanne etc." />
             </div>
           </div>
 
           <div>
-            <label for="type">Project type</label>
-            <input id="type" name="Project type" type="text" placeholder="Portrait / Couple / Event / Editorial…" />
+            <label for="type">Type de projet</label>
+            <input id="type" name="Project type" type="text" placeholder="Portrait / Couple / Evenement..." />
           </div>
 
           <div>
             <label for="message">Message</label>
-            <textarea id="message" name="Message" placeholder="What’s the vibe? Any references or notes?" required></textarea>
-            <p class="helper">By sending, you agree to the <a href="../dist/privacy.html">Privacy Policy</a>.</p>
+            <textarea id="message" name="Message" placeholder="Envie de me décrire le projet plus en détails?" required></textarea>
+            <p class="helper">En cliquant sur "Envoyer" vous acceptez la <a href="../dist/privacy.html">/politique de confidentialité>.</p>
           </div>
 
           <div>
-            <button class="btn primary" type="submit">Send email</button>
-            <a class="btn" href="mailto:you@example.com">Or email directly</a>
+            <button class="btn primary" type="submit">Envoyer</button>
+            <a class="btn" href="ophelia.zimmermann@protonmail.com">Ou envoyez moi un email directement !/a>
           </div>
         </form>
       </div>
 
-      <div class="card">
-        <div class="kicker">Contact</div>
-        <p><strong>Email:</strong> <a href="mailto:you@example.com">you@example.com</a><br />
-           <strong>Instagram:</strong> <a href="https://instagram.com/" target="_blank" rel="noopener">instagram.com/yourhandle</a><br />
-           <strong>Location:</strong> Zurich, Switzerland</p>
-
-        <div class="kicker">Availability</div>
-        <p class="muted">Weekdays & selected weekends. Happy to travel across CH.</p>
-      </div>
     </section>
   </main>
 
