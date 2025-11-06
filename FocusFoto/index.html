@@ -1,59 +1,11 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#17A2B8">
   <title>Focus Foto — Home</title>
   <link rel="stylesheet" href="./style.css" />
-  <style>
-    /* Page-specific gallery polish that builds on style.css */
-    /* Page-specific gallery polish that builds on style.css */
-    .gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); /* bigger images */
-    gap: 20px;
-    margin: 20px 0 8px;
-    }
-
-    .tile {
-    position: relative;
-    overflow: hidden;
-    border-radius: 12px;
-    border: 1px solid var(--border);
-    background: #f7f7f7;
-    aspect-ratio: 4 / 3; /* <-- gives tiles height so images show */
-    }
-
-    .tile img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.35s ease;
-    }
-
-    .tile:hover img {
-    transform: scale(1.03);
-    } 
-
-    .tile .cap{
-      position:absolute; left:8px; bottom:8px; padding:6px 10px; border-radius:999px;
-      background:rgba(255,255,255,.9); border:1px solid var(--border); font: size 1.5em;
-    }
-    /* simple lightbox */
-    .lightbox{
-      position:fixed; inset:0; background:rgba(0,0,0,.9); display:none; align-items:center; justify-content:center; z-index:9999;
-    }
-    .lightbox.open{ display:flex; }
-    .lightbox img{ max-width:min(1200px, 90vw); max-height:85vh; border-radius:12px; border:1px solid #333; }
-    .lightbox .close, .lightbox .prev, .lightbox .next{
-      position:absolute; top:20px; padding:10px 14px; border-radius:999px; border:1px solid #fff; color:#fff; text-decoration:none;
-      background:transparent; cursor:pointer; font-size:16px;
-    }
-    .lightbox .close{ right:20px; }
-    .lightbox .prev{ left:20px; top:50%; transform:translateY(-50%); }
-    .lightbox .next{ right:20px; top:50%; transform:translateY(-50%); }
-  </style>
 </head>
 <body>
   <header>
@@ -71,58 +23,55 @@
 
   <main class="container">
     <h1>Gallerie</h1>
-    <p class="lead">Aperçu de mon travail - Portait, paysage et divers évènements.</p>
+    <p class="lead">Aperçu de mon travail — portrait, paysage et divers évènements.</p>
 
-    <!-- TIP: Put your images in /FocusFoto/assets/gallery/ -->
     <section class="gallery-grid" id="gallery">
-  <a href="./dist/gallery/portrait.jpg" class="tile" data-title="Portrait">
-    <img src="./dist/gallery/portrait.jpg" alt="Portrait">
-  </a>
+      <a href="./dist/gallery/portrait.jpg" class="tile" data-title="Portrait">
+        <img src="./dist/gallery/portrait.jpg" alt="Portrait" loading="lazy" decoding="async">
+      </a>
 
-  <a href="./dist/gallery/barbie.jpg" class="tile" data-title="Joy">
-    <img src="./dist/gallery/barbie.jpg" alt="Joy">
-  </a>
+      <a href="./dist/gallery/barbie.jpg" class="tile" data-title="Joy">
+        <img src="./dist/gallery/barbie.jpg" alt="Joy" loading="lazy" decoding="async">
+      </a>
 
-  <a href="./dist/gallery/piano.jpg" class="tile" data-title="Piano">
-    <img src="./dist/gallery/piano.jpg" alt="Piano">
-  </a>
+      <a href="./dist/gallery/piano.jpg" class="tile" data-title="Piano">
+        <img src="./dist/gallery/piano.jpg" alt="Piano" loading="lazy" decoding="async">
+      </a>
 
-  <a href="./dist/gallery/regard.jpg" class="tile" data-title="Love">
-    <img src="./dist/gallery/regard.jpg" alt="Love">
-  </a>
+      <a href="./dist/gallery/regard.jpg" class="tile" data-title="Love">
+        <img src="./dist/gallery/regard.jpg" alt="Love" loading="lazy" decoding="async">
+      </a>
 
-  <a href="./dist/gallery/brouillard.jpg" class="tile" data-title="fog">
-  <img src="./dist/gallery/brouillard.jpg" alt="fog">
-  </a>
+      <a href="./dist/gallery/brouillard.jpg" class="tile" data-title="Brouillard">
+        <img src="./dist/gallery/brouillard.jpg" alt="Brouillard" loading="lazy" decoding="async">
+      </a>
 
-  <a href="./dist/gallery/well.jpg" class="tile" data-title="Couleur">
-    <img src="./dist/gallery/well.jpg" alt="Couleur">
-  </a>
+      <a href="./dist/gallery/well.jpg" class="tile" data-title="Couleur">
+        <img src="./dist/gallery/well.jpg" alt="Couleur" loading="lazy" decoding="async">
+      </a>
 
-  <a href="./dist/gallery/velo.jpg" class="tile" data-title="Mouvement">
-    <img src="./dist/gallery/velo.jpg" alt="Mouvement">
-  </a>
+      <a href="./dist/gallery/velo.jpg" class="tile" data-title="Mouvement">
+        <img src="./dist/gallery/velo.jpg" alt="Mouvement" loading="lazy" decoding="async">
+      </a>
 
-  <a href="./dist/gallery/fruits.jpg" class="tile" data-title="brochette">
-    <img src="./dist/gallery/fruits.jpg" alt="brochette">
-  </a>
+      <a href="./dist/gallery/fruits.jpg" class="tile" data-title="Brochette">
+        <img src="./dist/gallery/fruits.jpg" alt="Brochette" loading="lazy" decoding="async">
+      </a>
 
-  <a href="./dist/gallery/gateau.jpg" class="tile" data-title="gateau">
-    <img src="./dist/gallery/gateau.jpg" alt="gateau">
-  </a>
+      <a href="./dist/gallery/gateau.jpg" class="tile" data-title="Gâteau">
+        <img src="./dist/gallery/gateau.jpg" alt="Gâteau" loading="lazy" decoding="async">
+      </a>
 
-  <a href="./dist/gallery/landing_photo.jpg" class="tile" data-title="paysage">
-    <img src="./dist/gallery/landing_photo.jpg" alt="paysage">
-  </a>
-
-  </section>
-
+      <a href="./dist/gallery/landing_photo.jpg" class="tile" data-title="Paysage">
+        <img src="./dist/gallery/landing_photo.jpg" alt="Paysage" loading="lazy" decoding="async">
+      </a>
+    </section>
   </main>
 
   <footer>
     <div class="container">
-      © Ophelia Zimmermann — All rights reserved · 
-      <a href="./dist/impressum.html">Impressum</a> · 
+      © Ophelia Zimmermann — All rights reserved ·
+      <a href="./dist/impressum.html">Impressum</a> ·
       <a href="./dist/privacy.html">Privacy</a>
     </div>
   </footer>
@@ -136,50 +85,65 @@
   </div>
 
   <script>
-    (function(){
-      const tiles = Array.from(document.querySelectorAll('.tile'));
-      const lb = document.getElementById('lightbox');
-      const img = lb.querySelector('img');
-      const close = lb.querySelector('.close');
-      const prev = lb.querySelector('.prev');
-      const next = lb.querySelector('.next');
-      let i = 0;
+  (function(){
+    const tiles = Array.from(document.querySelectorAll('.tile'));
+    const lb = document.getElementById('lightbox');
+    const img = lb.querySelector('img');
+    const close = lb.querySelector('.close');
+    const prev = lb.querySelector('.prev');
+    const next = lb.querySelector('.next');
+    let i = 0;
 
-      function open(n){
-        i = n;
-        const a = tiles[i];
-        img.src = a.getAttribute('href');
-        img.alt = a.dataset.title || a.querySelector('img')?.alt || '';
-        lb.classList.add('open');
-        lb.setAttribute('aria-hidden','false');
-        document.body.style.overflow='hidden';
-      }
-      function closeLb(){
-        lb.classList.remove('open');
-        lb.setAttribute('aria-hidden','true');
-        document.body.style.overflow='';
-        img.src = '';
-      }
-      function step(d){
-        i = (i + d + tiles.length) % tiles.length;
-        open(i);
-      }
+    function open(n){
+      i = n;
+      const a = tiles[i];
+      img.src = a.getAttribute('href');
+      img.alt = a.dataset.title || a.querySelector('img')?.alt || '';
+      lb.classList.add('open');
+      lb.setAttribute('aria-hidden','false');
+      document.body.style.overflow='hidden';
+    }
+    function closeLb(){
+      lb.classList.remove('open');
+      lb.setAttribute('aria-hidden','true');
+      document.body.style.overflow='';
+      img.src = '';
+    }
+    function step(d){
+      i = (i + d + tiles.length) % tiles.length;
+      open(i);
+    }
 
-      tiles.forEach((a,idx)=>{
-        a.addEventListener('click', e => { e.preventDefault(); open(idx); });
-      });
-      close.addEventListener('click', closeLb);
-      prev.addEventListener('click', ()=>step(-1));
-      next.addEventListener('click', ()=>step(1));
-      lb.addEventListener('click', (e)=>{ if(e.target === lb) closeLb(); });
-      document.addEventListener('keydown', (e)=>{
-        if(!lb.classList.contains('open')) return;
-        if(e.key === 'Escape') closeLb();
-        if(e.key === 'ArrowLeft') step(-1);
-        if(e.key === 'ArrowRight') step(1);
-      });
-    })();
+    tiles.forEach((a,idx)=> a.addEventListener('click', e => { e.preventDefault(); open(idx); }));
+    close.addEventListener('click', closeLb);
+    prev.addEventListener('click', ()=>step(-1));
+    next.addEventListener('click', ()=>step(1));
+    lb.addEventListener('click', (e)=>{ if(e.target === lb) closeLb(); });
+    document.addEventListener('keydown', (e)=>{
+      if(!lb.classList.contains('open')) return;
+      if(e.key === 'Escape') closeLb();
+      if(e.key === 'ArrowLeft') step(-1);
+      if(e.key === 'ArrowRight') step(1);
+    });
+
+    // Simple swipe support for mobile
+    let sx = 0, sy = 0, touching = false;
+    lb.addEventListener('touchstart', (e)=>{
+      if(!lb.classList.contains('open')) return;
+      const t = e.changedTouches[0];
+      sx = t.clientX; sy = t.clientY; touching = true;
+    }, {passive:true});
+    lb.addEventListener('touchend', (e)=>{
+      if(!touching) return;
+      const t = e.changedTouches[0];
+      const dx = t.clientX - sx;
+      const dy = t.clientY - sy;
+      touching = false;
+      if(Math.abs(dx) > 40 && Math.abs(dy) < 60){
+        if(dx < 0) step(1); else step(-1);
+      }
+    });
+  })();
   </script>
 </body>
 </html>
-
