@@ -11,11 +11,13 @@
   <header>
     <div class="container">
       <nav>
+        <!-- Brand centered across the header -->
         <div class="brand">Focus Foto</div>
-        <!-- Bouton menu (mobile) -->
-        <button class="menu-toggle" aria-expanded="false" aria-controls="site-menu" aria-label="Ouvrir le menu">☰ Menu</button>
 
-        <!-- Liens de navigation -->
+        <!-- Three-dots menu (mobile) -->
+        <button class="menu-toggle" aria-expanded="false" aria-controls="site-menu" aria-label="Ouvrir le menu">⋯</button>
+
+        <!-- Links panel (hidden on mobile until opened) -->
         <div id="site-menu" class="nav-links">
           <a href="./index.html" aria-current="page">Home</a>
           <a href="./dist/about_me.html">About</a>
@@ -89,38 +91,37 @@
   </div>
 
   <script>
-  // Toggle menu (mobile)
+  // Mobile menu: show only when tapped; close on link click, outside click, or Esc
   (function(){
     const btn = document.querySelector('.menu-toggle');
     const menu = document.getElementById('site-menu');
 
-    function closeOnOutside(e){
-      if(!menu.classList.contains('open')) return;
-      if(!menu.contains(e.target) && e.target !== btn){
-        menu.classList.remove('open');
-        btn.setAttribute('aria-expanded','false');
-        document.removeEventListener('click', closeOnOutside);
-      }
+    function closeMenu(){
+      menu.classList.remove('open');
+      btn.setAttribute('aria-expanded','false');
+      document.removeEventListener('click', outside);
+    }
+    function outside(e){
+      if(!menu.contains(e.target) && e.target !== btn){ closeMenu(); }
     }
 
     btn.addEventListener('click', ()=>{
       const isOpen = menu.classList.toggle('open');
       btn.setAttribute('aria-expanded', String(isOpen));
-      // close if click outside
       if(isOpen){
-        setTimeout(()=> document.addEventListener('click', closeOnOutside), 0);
+        setTimeout(()=> document.addEventListener('click', outside), 0);
       }else{
-        document.removeEventListener('click', closeOnOutside);
+        document.removeEventListener('click', outside);
       }
     });
 
     // close on Esc
     document.addEventListener('keydown', (e)=>{
-      if(e.key === 'Escape' && menu.classList.contains('open')){
-        menu.classList.remove('open');
-        btn.setAttribute('aria-expanded','false');
-      }
+      if(e.key === 'Escape' && menu.classList.contains('open')) closeMenu();
     });
+
+    // close when choosing an onglet
+    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
   })();
 
   // Lightbox + swipe
