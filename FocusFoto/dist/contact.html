@@ -84,53 +84,87 @@
   <main class="container">
     <h1>Planifions votre séance</h1>
     <p class="lead">Parlez-moi un peu de vous et de votre projet photo.</p>
+<form id="contact-form" action="https://formspree.io/f/xwpwgykk" method="POST">
+  <!-- Champ anti-spam (honeypot) -->
+  <input type="text" name="_gotcha" style="display:none">
 
-    <section class="section">
-      <div class="card">
-        <form action="mailto:ophelia.zimmermann@protonmail.com" method="post" enctype="text/plain">
-          
-          <div>
-            <label for="name">Votre nom et prénom</label>
-            <input id="name" name="Name" type="text" required />
-          </div>
+  <div>
+    <label for="name">Votre nom et prénom</label>
+    <input id="name" name="name" type="text" required />
+  </div>
 
-          <div>
-            <label for="email">Email</label>
-            <input id="email" name="Email" type="email" required />
-          </div>
+  <div>
+    <label for="email">Email</label>
+    <input id="email" name="email" type="email" required />
+  </div>
 
-          <div>
-            <label for="date">Date de l'évènement</label>
-            <input id="date" name="Preferred date" type="date" />
-          </div>
+  <div>
+    <label for="date">Date de l'évènement</label>
+    <input id="date" name="date" type="date" />
+  </div>
 
-          <div>
-            <label for="location">Lieu</label>
-            <input id="location" name="Location" type="text" placeholder="Genève, Nyon, Lausanne etc." />
-          </div>
+  <div>
+    <label for="location">Lieu</label>
+    <input id="location" name="location" type="text" placeholder="Genève, Nyon, Lausanne etc." />
+  </div>
 
-          <div>
-            <label for="type">Type de projet</label>
-            <input id="type" name="Project type" type="text" placeholder="Portrait / Couple / Évènement..." />
-          </div>
+  <div>
+    <label for="type">Type de projet</label>
+    <input id="type" name="project_type" type="text" placeholder="Portrait / Couple / Évènement..." />
+  </div>
 
-          <div>
-            <label for="message">Message</label>
-            <textarea id="message" name="Message" placeholder="Décrivez votre projet en quelques lignes..." required></textarea>
-            <p class="helper">
-              En cliquant sur "Envoyer", vous acceptez la 
-              <a href="../dist/privacy.html">politique de confidentialité</a>.
-            </p>
-          </div>
+  <div>
+    <label for="message">Message</label>
+    <textarea id="message" name="message" placeholder="Décrivez votre projet..." required></textarea>
+    <p class="helper">
+      En cliquant sur "Envoyer", vous acceptez la 
+      <a href="../dist/privacy.html">politique de confidentialité</a>.
+    </p>
+  </div>
 
-          <div>
-            <button class="btn primary" type="submit">Envoyer</button>
-            <a class="btn" href="mailto:ophelia.zimmermann@protonmail.com">Ou envoyez-moi un email directement</a>
-          </div>
+  <!-- Sujet et redirection (facultatif mais utile) -->
+  <input type="hidden" name="_subject" value="Nouveau message depuis le site Focus Foto">
+  <input type="hidden" name="_redirect" value="https://opheliazimmermann.github.io/dist/merci.html">
 
-        </form>
-      </div>
-    </section>
+  <div>
+    <button class="btn primary" type="submit">Envoyer</button>
+    <a class="btn" href="mailto:ophelia.zimmermann@protonmail.com">Ou email direct</a>
+  </div>
+
+  <p id="form-status" class="helper" aria-live="polite"></p>
+</form>
+
+<script>
+/* Option 1 — Envoi avec redirection (aucun JS nécessaire)
+   -> Laissez le form tel quel, Formspree redirige vers merci.html
+
+   Option 2 — Envoi AJAX (reste sur la page et affiche un message) :
+   -> Dé-commentez le code ci-dessous et supprimez l'input _redirect
+*/
+
+// (décommente pour AJAX)
+// (function(){
+//   const form = document.getElementById('contact-form');
+//   const status = document.getElementById('form-status');
+//   form.addEventListener('submit', async (e)=>{
+//     e.preventDefault();
+//     status.textContent = "Envoi en cours...";
+//     try {
+//       const data = new FormData(form);
+//       const res = await fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
+//       if (res.ok) {
+//         form.reset();
+//         status.textContent = "Merci ! Votre message a bien été envoyé.";
+//       } else {
+//         status.textContent = "Oups, une erreur s'est produite. Réessayez.";
+//       }
+//     } catch(err){
+//       status.textContent = "Impossible d'envoyer pour le moment. Vérifiez votre connexion.";
+//     }
+//   });
+// })();
+</script>
+
   </main>
 
   <footer>
