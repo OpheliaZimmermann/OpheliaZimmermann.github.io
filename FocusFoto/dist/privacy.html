@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -10,7 +10,6 @@
   <header>
     <div class="container">
       <nav>
-        <!-- Brand centered across the header -->
         <div class="brand">Focus Foto</div>
 
         <!-- Three-dots menu (mobile) -->
@@ -82,11 +81,42 @@
   </main>
 
   <footer>
-  <div class="container">
-    © Ophelia Zimmermann — All rights reserved · 
-    <a href="../dist/impressum.html">Impressum</a> · 
-    <a href="../dist/privacy.html">Privacy</a>
-  </div>
-</footer>
+    <div class="container">
+      © Ophelia Zimmermann — All rights reserved · 
+      <a href="../dist/impressum.html">Impressum</a> · 
+      <a href="../dist/privacy.html" aria-current="page">Privacy</a>
+    </div>
+  </footer>
+
+  <!-- Mobile menu JS (same as other pages) -->
+  <script>
+  (function(){
+    const btn = document.querySelector('.menu-toggle');
+    const menu = document.getElementById('site-menu');
+    if(!btn || !menu) return;
+
+    const closeMenu = () => {
+      menu.classList.remove('open');
+      btn.setAttribute('aria-expanded','false');
+      document.removeEventListener('click', outside);
+    };
+    const outside = (e) => {
+      if(!menu.contains(e.target) && e.target !== btn) closeMenu();
+    };
+
+    btn.addEventListener('click', ()=>{
+      const isOpen = menu.classList.toggle('open');
+      btn.setAttribute('aria-expanded', String(isOpen));
+      if(isOpen){ setTimeout(()=>document.addEventListener('click', outside), 0); }
+      else{ document.removeEventListener('click', outside); }
+    });
+
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape' && menu.classList.contains('open')) closeMenu();
+    });
+
+    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+  })();
+  </script>
 </body>
 </html>

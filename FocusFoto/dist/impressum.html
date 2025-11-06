@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -7,16 +7,15 @@
   <link rel="stylesheet" href="../style.css?v=5" />
 </head>
 <body>
-    <header>
+  <header>
     <div class="container">
       <nav>
-        <!-- Brand centered across the header -->
         <div class="brand">Focus Foto</div>
 
-        <!-- Three-dots menu (mobile) -->
+        <!-- Bouton menu (mobile) -->
         <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Ouvrir le menu">⋯</button>
 
-        <!-- Links panel (hidden on mobile until opened) -->
+        <!-- Liens (cachés sur mobile jusqu’à ouverture) -->
         <div id="site-menu" class="nav-links" role="menu">
           <a href="../index.html" role="menuitem">Home</a>
           <a href="../dist/about_me.html" role="menuitem">About</a>
@@ -28,28 +27,60 @@
 
   <main class="container">
     <h1>Impressum</h1>
+
     <div class="card">
-      <div class="definition"><strong>Responsible entity</strong><div>Ophelia Zimmermann<br/>Focus Foto</div></div>
-      <div class="definition"><strong>Address</strong><div>Street &amp; No.<br/>8000 Zurich<br/>Switzerland</div></div>
+      <div class="definition"><strong>Responsable</strong><div>Ophelia Zimmermann<br/>Focus Foto</div></div>
+      <div class="definition"><strong>Adresse</strong><div>Street &amp; No.<br/>8000 Zurich<br/>Suisse</div></div>
       <div class="definition"><strong>Email</strong><div><a href="mailto:you@example.com">you@example.com</a></div></div>
-      <div class="definition"><strong>Phone</strong><div>+41 (0) __ ___ __ __</div></div>
-      <div class="definition"><strong>UID / VAT</strong><div>CHE-xxx.xxx.xxx</div></div>
+      <div class="definition"><strong>Téléphone</strong><div>+41 (0) __ ___ __ __</div></div>
+      <div class="definition"><strong>UID / TVA</strong><div>CHE-xxx.xxx.xxx</div></div>
     </div>
 
     <section class="section card">
       <div class="kicker">Disclaimer</div>
-      <p>All content on this website was created with care. Nevertheless, we cannot guarantee the accuracy, completeness or timeliness of the content. Liability claims against the author due to material or immaterial damage resulting from access, use or non-use of published information are excluded.</p>
-      <p>Links to external websites are outside our responsibility. Access and use of such websites is at the user’s own risk.</p>
-      <p>Copyright © Ophelia Zimmermann. All images and texts are protected by copyright and may not be used without permission.</p>
+      <p>Le contenu de ce site a été créé avec soin. Néanmoins, aucune garantie ne peut être donnée quant à l’exactitude, l’exhaustivité ou l’actualité des informations. Toute responsabilité pour des dommages matériels ou immatériels résultant de l’accès, de l’utilisation ou de la non-utilisation des informations publiées est exclue.</p>
+      <p>Les liens vers des sites externes sont en dehors de notre responsabilité. L’accès et l’utilisation de ces sites se font aux risques de l’utilisateur·rice.</p>
+      <p>Copyright © Ophelia Zimmermann. Toutes les images et tous les textes sont protégés par le droit d’auteur et ne peuvent pas être utilisés sans autorisation.</p>
     </section>
   </main>
 
   <footer>
-  <div class="container">
-    © Ophelia Zimmermann — All rights reserved · 
-    <a href="../dist/impressum.html">Impressum</a> · 
-    <a href="../dist/privacy.html">Privacy</a>
-  </div>
-</footer>
+    <div class="container">
+      © Ophelia Zimmermann — All rights reserved ·
+      <a href="../dist/impressum.html" aria-current="page">Impressum</a> ·
+      <a href="../dist/privacy.html">Privacy</a>
+    </div>
+  </footer>
+
+  <!-- JS menu mobile (même que sur les autres pages) -->
+  <script>
+  (function(){
+    const btn = document.querySelector('.menu-toggle');
+    const menu = document.getElementById('site-menu');
+    if(!btn || !menu) return;
+
+    const closeMenu = () => {
+      menu.classList.remove('open');
+      btn.setAttribute('aria-expanded','false');
+      document.removeEventListener('click', outside);
+    };
+    const outside = (e) => {
+      if(!menu.contains(e.target) && e.target !== btn) closeMenu();
+    };
+
+    btn.addEventListener('click', ()=>{
+      const isOpen = menu.classList.toggle('open');
+      btn.setAttribute('aria-expanded', String(isOpen));
+      if(isOpen){ setTimeout(()=>document.addEventListener('click', outside), 0); }
+      else{ document.removeEventListener('click', outside); }
+    });
+
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape' && menu.classList.contains('open')) closeMenu();
+    });
+
+    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+  })();
+  </script>
 </body>
 </html>

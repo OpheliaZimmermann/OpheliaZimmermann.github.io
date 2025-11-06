@@ -4,7 +4,32 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>About Me — Focus Foto</title>
-  <link rel="stylesheet" href="../style.css?v=5 />
+  <link rel="stylesheet" href="../style.css?v=5" />
+  <style>
+    /* --- Ajuste la taille de la photo de profil --- */
+    figure img {
+      width: 100%;
+      max-width: 420px;
+      height: auto;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+
+    /* Sur mobile : plus petite, centrée, avec espace en bas */
+    @media (max-width: 700px) {
+      figure {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 1.5rem;
+      }
+      figure img {
+        width: 70%;
+        max-width: 250px;
+        border-radius: 50%;
+      }
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -18,7 +43,7 @@
         <!-- nav links -->
         <div id="site-menu" class="nav-links">
           <a href="../index.html">Home</a>
-          <a href="../dist/about_me.html">About</a>
+          <a href="../dist/about_me.html" aria-current="page">About</a>
           <a href="../dist/contact.html">Contact</a>
         </div>
       </nav>
@@ -26,43 +51,41 @@
   </header>
 
   <main class="container">
-    <h1>Hello, Je m'appelle Ophelia.</h1>
+    <h1>Hello, je m'appelle Ophelia.</h1>
     <p class="lead">Photographe indépendante basée à Genève, je couvre vos évènements, concerts, EVJF, ou sessions portrait.</p>
 
     <section class="section grid-2">
       <figure>
-        <!-- Replace with your image file path or remove the figure if not needed -->
         <img src="../dist/gallery/profil.jpg" alt="Portrait of Ophelia Zimmermann" />
       </figure>
 
       <div class="card">
-        <p>J'aime capturer des moments précieux, des sourirs complices, des rayon de lumière naturelle. Pour les couverture d'évènements ou les portraits en extérieur, nous pourrons collaborer ensemble pour un rendu optimal.</p>
+        <p>J'aime capturer des moments précieux, des sourires complices, des rayons de lumière naturelle. Pour les couvertures d'évènements ou les portraits en extérieur, nous collaborerons pour un rendu optimal.</p>
         <p>Disponible à Genève et aux alentours, je parle français et anglais.</p>
 
         <div class="section">
           <div class="kicker">Clients</div>
           <ul class="list-clean">
-            <li>Artistes indépendant.e.s</li>
+            <li>Artistes indépendant·e·s</li>
             <li>Fondations et associations</li>
-            <li>Famille, couple, ami.e.s</li>
+            <li>Familles, couples, ami·e·s</li>
           </ul>
         </div>
 
         <div class="section">
-          <a class="btn primary" href="../dist/contact.html">Reservation | Devis</a>
-          <a class="btn" href="../dist/index.html">Gallerie</a>
+          <a class="btn primary" href="../dist/contact.html">Réservation | Devis</a>
+          <a class="btn" href="../index.html">Galerie</a>
         </div>
       </div>
     </section>
-
   </main>
 
   <footer>
-  <div class="container">
-    © Ophelia Zimmermann — All rights reserved · 
-    <a href="../dist/impressum.html">Impressum</a> · 
-    <a href="../dist/privacy.html">Privacy</a>
-  </div>
+    <div class="container">
+      © Ophelia Zimmermann — All rights reserved · 
+      <a href="../dist/impressum.html">Impressum</a> · 
+      <a href="../dist/privacy.html">Privacy</a>
+    </div>
   </footer>
-  </body>
+</body>
 </html>
