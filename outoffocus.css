@@ -1,0 +1,77 @@
+/* ---------- Out of Focus mobile-first fixes ---------- */
+
+/* Palette / vibe (adjust if you want) */
+:root{
+  --bg:#0c0c0d;
+  --text:#e9eef2;
+  --muted:#9aa4ad;
+  --border:#1f2429;
+  --accent:#7f5af0; /* accent for header/buttons */
+}
+
+/* Dark surfaces */
+html,body{ background:var(--bg); color:var(--text); }
+header{ background:var(--accent); }
+footer{ background:#0e1114; border-top-color:var(--border); color:var(--muted); }
+.card{ background:#111418; border-color:var(--border); }
+
+/* Container: tighter on phones */
+.container{ padding:14px; }
+@media (min-width:640px){ .container{ padding:20px; }}
+
+/* Header: center brand on mobile, hide inline links behind menu */
+.brand{ color:#fff; }
+.nav-links a{ color:#fff; }
+.nav-links a:hover{ background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.25); }
+
+@media (max-width: 900px){
+  nav{ justify-content:center; }
+  .brand{ text-align:center; width:100%; }
+
+  .menu-toggle{
+    display:block; position:absolute; right:14px; top:50%;
+    transform:translateY(-50%); color:#fff; border:1px solid rgba(255,255,255,.6);
+    background:transparent; padding:8px 12px; border-radius:999px;
+  }
+
+  .nav-links{
+    display:none !important;
+    position:absolute; right:14px; top:58px; z-index:1000;
+    flex-direction:column; gap:8px; padding:10px;
+    background:#ffffff; color:#111; border:1px solid #e6e6e6;
+    border-radius:12px;
+    min-width: 180px;
+  }
+  .nav-links a{ color:#111; }
+  .nav-links a:hover{ background:#f4f8f9; border-color:#e2eef1; }
+  .nav-links.open{ display:flex !important; }
+}
+
+/* Typography tighter on mobile */
+main h1{ font-size:clamp(1.5rem, 2.5vw + 0.9rem, 2.4rem); margin:16px 0 8px; }
+.lead{ color:var(--muted); margin:0 0 14px; }
+
+/* Gallery: make tiles smaller on phones so we get 2–3 columns */
+.gallery-grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap:10px;
+  margin:14px 0 8px;
+}
+@media (min-width:640px){
+  .gallery-grid{ gap:14px; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); }
+}
+@media (min-width:960px){
+  .gallery-grid{ gap:18px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+}
+
+/* Tiles: subtle mood + keep aspect */
+.tile{ background:#111418; border-color:var(--border); aspect-ratio:4/3; border-radius:12px; overflow:hidden; }
+.tile img{ width:100%; height:100%; object-fit:cover; display:block; filter:grayscale(15%) contrast(1.05); }
+@media (hover:hover) and (pointer:fine){
+  .tile:hover img{ transform:scale(1.03); transition:transform .3s ease; }
+}
+
+/* Buttons in dark theme */
+.btn{ background:#151a1f; color:#e9eef2; border-color:#2a3239; }
+.btn.primary{ background:#7f5af0; border-color:#7f5af0; color:#fff; }
