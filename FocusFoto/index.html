@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="theme-color" content="#17A2B8">
   <title>Focus Foto — Home</title>
-  <link rel="stylesheet" href="./style.css" />
+  <!-- cache-bust the CSS in case the old one was stuck -->
+  <link rel="stylesheet" href="./style.css?v=4" />
 </head>
 <body>
   <header>
@@ -15,13 +16,13 @@
         <div class="brand">Focus Foto</div>
 
         <!-- Three-dots menu (mobile) -->
-        <button class="menu-toggle" aria-expanded="false" aria-controls="site-menu" aria-label="Ouvrir le menu">⋯</button>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Ouvrir le menu">⋯</button>
 
         <!-- Links panel (hidden on mobile until opened) -->
-        <div id="site-menu" class="nav-links">
-          <a href="./index.html" aria-current="page">Home</a>
-          <a href="./dist/about_me.html">About</a>
-          <a href="./dist/contact.html">Contact</a>
+        <div id="site-menu" class="nav-links" role="menu">
+          <a href="./index.html" aria-current="page" role="menuitem">Home</a>
+          <a href="./dist/about_me.html" role="menuitem">About</a>
+          <a href="./dist/contact.html" role="menuitem">Contact</a>
         </div>
       </nav>
     </div>
@@ -91,10 +92,12 @@
   </div>
 
   <script>
-  // Mobile menu: show only when tapped; close on link click, outside click, or Esc
+  // Mobile menu
   (function(){
     const btn = document.querySelector('.menu-toggle');
     const menu = document.getElementById('site-menu');
+
+    if(!btn || !menu){ return; } // safety
 
     function closeMenu(){
       menu.classList.remove('open');
@@ -115,12 +118,10 @@
       }
     });
 
-    // close on Esc
+    // close on Esc and on menu link click
     document.addEventListener('keydown', (e)=>{
       if(e.key === 'Escape' && menu.classList.contains('open')) closeMenu();
     });
-
-    // close when choosing an onglet
     menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
   })();
 
