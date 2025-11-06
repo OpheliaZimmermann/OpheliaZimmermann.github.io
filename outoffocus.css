@@ -75,3 +75,30 @@ main h1{ font-size:clamp(1.5rem, 2.5vw + 0.9rem, 2.4rem); margin:16px 0 8px; }
 /* Buttons in dark theme */
 .btn{ background:#151a1f; color:#e9eef2; border-color:#2a3239; }
 .btn.primary{ background:#7f5af0; border-color:#7f5af0; color:#fff; }
+/* --- Mobile rescue overrides (append at end) --- */
+@media (max-width: 900px){
+  /* kill the split fixed background on phones (caused layout/scroll issues) */
+  .position-absolute-expand{ display:none !important; }
+
+  /* hero shouldn't be a full 100vh with letterboxing — make it comfortable */
+  .hero-art{
+    height: 68svh !important;   /* steady height on modern mobiles */
+    background-size: contain !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    background-color:#0b0f14;
+  }
+
+  /* tighten the page chrome */
+  .container{ padding:14px !important; }
+
+  /* stack panels nicely, reduce paddings */
+  .equal-panels .col-12,
+  .equal-panels .col-lg-6{ display:block !important; }
+  .panel{ padding:18px 14px !important; }
+  .title-wrap{ min-height: auto !important; margin-bottom:8px !important; }
+
+  /* readable type on small screens */
+  .display-3{ font-size: clamp(1.3rem, 4vw + .6rem, 1.9rem) !important; }
+  .leadish{ font-size: 1rem !important; line-height:1.55 !important; }
+}
