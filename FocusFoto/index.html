@@ -12,7 +12,11 @@
     <div class="container">
       <nav>
         <div class="brand">Focus Foto</div>
-        <div class="nav-links">
+        <!-- Bouton menu (mobile) -->
+        <button class="menu-toggle" aria-expanded="false" aria-controls="site-menu" aria-label="Ouvrir le menu">☰ Menu</button>
+
+        <!-- Liens de navigation -->
+        <div id="site-menu" class="nav-links">
           <a href="./index.html" aria-current="page">Home</a>
           <a href="./dist/about_me.html">About</a>
           <a href="./dist/contact.html">Contact</a>
@@ -78,13 +82,48 @@
 
   <!-- Lightbox -->
   <div class="lightbox" id="lightbox" aria-hidden="true">
-    <button class="close" aria-label="Close">✕</button>
-    <button class="prev" aria-label="Previous">‹</button>
+    <button class="close" aria-label="Fermer">✕</button>
+    <button class="prev" aria-label="Précédent">‹</button>
     <img src="" alt="" />
-    <button class="next" aria-label="Next">›</button>
+    <button class="next" aria-label="Suivant">›</button>
   </div>
 
   <script>
+  // Toggle menu (mobile)
+  (function(){
+    const btn = document.querySelector('.menu-toggle');
+    const menu = document.getElementById('site-menu');
+
+    function closeOnOutside(e){
+      if(!menu.classList.contains('open')) return;
+      if(!menu.contains(e.target) && e.target !== btn){
+        menu.classList.remove('open');
+        btn.setAttribute('aria-expanded','false');
+        document.removeEventListener('click', closeOnOutside);
+      }
+    }
+
+    btn.addEventListener('click', ()=>{
+      const isOpen = menu.classList.toggle('open');
+      btn.setAttribute('aria-expanded', String(isOpen));
+      // close if click outside
+      if(isOpen){
+        setTimeout(()=> document.addEventListener('click', closeOnOutside), 0);
+      }else{
+        document.removeEventListener('click', closeOnOutside);
+      }
+    });
+
+    // close on Esc
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape' && menu.classList.contains('open')){
+        menu.classList.remove('open');
+        btn.setAttribute('aria-expanded','false');
+      }
+    });
+  })();
+
+  // Lightbox + swipe
   (function(){
     const tiles = Array.from(document.querySelectorAll('.tile'));
     const lb = document.getElementById('lightbox');
@@ -126,19 +165,19 @@
       if(e.key === 'ArrowRight') step(1);
     });
 
-    // Simple swipe support for mobile
-    let sx = 0, sy = 0, touching = false;
+    // Swipe mobile
+    let sx = 0, sy = 0, touch = false;
     lb.addEventListener('touchstart', (e)=>{
       if(!lb.classList.contains('open')) return;
       const t = e.changedTouches[0];
-      sx = t.clientX; sy = t.clientY; touching = true;
+      sx = t.clientX; sy = t.clientY; touch = true;
     }, {passive:true});
     lb.addEventListener('touchend', (e)=>{
-      if(!touching) return;
+      if(!touch) return;
       const t = e.changedTouches[0];
       const dx = t.clientX - sx;
       const dy = t.clientY - sy;
-      touching = false;
+      touch = false;
       if(Math.abs(dx) > 40 && Math.abs(dy) < 60){
         if(dx < 0) step(1); else step(-1);
       }
