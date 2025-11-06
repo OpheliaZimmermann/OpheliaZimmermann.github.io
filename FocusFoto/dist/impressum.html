@@ -7,14 +7,20 @@
   <link rel="stylesheet" href="../style.css" />
 </head>
 <body>
-  <header>
+    <header>
     <div class="container">
       <nav>
+        <!-- Brand centered across the header -->
         <div class="brand">Focus Foto</div>
-        <div class="nav-links">
-          <a href="../index.html">Home</a>
-          <a href="../dist/about_me.html">About</a>
-          <a href="../dist/contact.html">Contact</a>
+
+        <!-- Three-dots menu (mobile) -->
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Ouvrir le menu">⋯</button>
+
+        <!-- Links panel (hidden on mobile until opened) -->
+        <div id="site-menu" class="nav-links" role="menu">
+          <a href="../index.html" role="menuitem">Home</a>
+          <a href="../dist/about_me.html" role="menuitem">About</a>
+          <a href="../dist/contact.html" role="menuitem">Contact</a>
         </div>
       </nav>
     </div>
