@@ -158,3 +158,40 @@ footer a{ color:inherit; }
 .lightbox .close{ right:20px; }
 .lightbox .prev{ left:12px; top:50%; transform:translateY(-50%); }
 .lightbox .next{ right:12px; top:50%; transform:translateY(-50%); }
+/* ===== Out of Focus theme (activate with <body class="theme-outoffocus">) ===== */
+.theme-outoffocus{
+  --bg:#0c0c0d;
+  --text:#e9eef2;
+  --muted:#9aa4ad;
+  --border:#1f2429;
+  --accent:#7f5af0; /* tweak to taste */
+}
+
+/* Dark surfaces & accents */
+.theme-outoffocus html, 
+.theme-outoffocus body{ background:var(--bg); color:var(--text); }
+.theme-outoffocus header{ background:var(--accent); }
+.theme-outoffocus .card{ background:#111418; border-color:var(--border); }
+.theme-outoffocus footer{ background:#0e1114; border-top-color:var(--border); color:var(--muted); }
+
+/* Links in header (desktop) */
+.theme-outoffocus .nav-links a{ color:#fff; }
+.theme-outoffocus .nav-links a:hover{ background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.35); }
+
+/* Mobile menu panel stays light for contrast (you can flip this if you prefer dark) */
+@media (max-width:900px){
+  .theme-outoffocus .nav-links{
+    background:#ffffff; border-color:#e6e6e6;
+  }
+  .theme-outoffocus .nav-links a{ color:#111; }
+  .theme-outoffocus .nav-links a:hover{ background:#f4f8f9; border-color:#e2eef1; }
+}
+
+/* Gallery tiles */
+.theme-outoffocus .tile{ background:#111418; border-color:var(--border); }
+.theme-outoffocus .tile img{ filter: grayscale(20%) contrast(1.05); } /* optional mood */
+
+/* Buttons */
+.theme-outoffocus .btn{ border-color:#ddd; color:#e9eef2; background:#151a1f; }
+.theme-outoffocus .btn.primary{ background:#e9eef2; color:#0c0c0d; border-color:#e9eef2; }
+.theme-outoffocus .btn:hover{ box-shadow:var(--shadow); }
