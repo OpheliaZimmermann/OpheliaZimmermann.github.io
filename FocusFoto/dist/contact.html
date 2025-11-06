@@ -4,7 +4,63 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Contact — Focus Foto</title>
-  <link rel="stylesheet" href="../style.css?v=5" />
+  <link rel="stylesheet" href="../style.css?v=6" />
+  <style>
+    /* === Formulaire lisible et espacé === */
+    main .card form {
+      max-width: 760px;
+      margin: 0 auto;
+      font-size: 1.05rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 14px 16px;
+      font-size: 1rem;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: #fff;
+      box-shadow: var(--shadow);
+      transition: border-color 0.2s ease;
+    }
+
+    input:focus, textarea:focus {
+      border-color: #17A2B8;
+      outline: none;
+    }
+
+    textarea {
+      min-height: 180px;
+      resize: vertical;
+    }
+
+    .helper {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .form-row {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 700px) {
+      main .card form {
+        max-width: 100%;
+        gap: 1.2rem;
+      }
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -29,29 +85,28 @@
     <h1>Planifions votre séance</h1>
     <p class="lead">Parlez-moi un peu de vous et de votre projet photo.</p>
 
-    <section class="section grid-2">
+    <section class="section">
       <div class="card">
         <form action="mailto:ophelia.zimmermann@protonmail.com" method="post" enctype="text/plain">
-          <div class="form-row">
-            <div>
-              <label for="name">Votre nom et prénom</label>
-              <input id="name" name="Name" type="text" required />
-            </div>
-            <div>
-              <label for="email">Email</label>
-              <input id="email" name="Email" type="email" required />
-            </div>
+          
+          <div>
+            <label for="name">Votre nom et prénom</label>
+            <input id="name" name="Name" type="text" required />
           </div>
 
-          <div class="form-row">
-            <div>
-              <label for="date">Date de l'évènement</label>
-              <input id="date" name="Preferred date" type="date" />
-            </div>
-            <div>
-              <label for="location">Lieu</label>
-              <input id="location" name="Location" type="text" placeholder="Genève, Nyon, Lausanne etc." />
-            </div>
+          <div>
+            <label for="email">Email</label>
+            <input id="email" name="Email" type="email" required />
+          </div>
+
+          <div>
+            <label for="date">Date de l'évènement</label>
+            <input id="date" name="Preferred date" type="date" />
+          </div>
+
+          <div>
+            <label for="location">Lieu</label>
+            <input id="location" name="Location" type="text" placeholder="Genève, Nyon, Lausanne etc." />
           </div>
 
           <div>
@@ -72,6 +127,7 @@
             <button class="btn primary" type="submit">Envoyer</button>
             <a class="btn" href="mailto:ophelia.zimmermann@protonmail.com">Ou envoyez-moi un email directement !</a>
           </div>
+
         </form>
       </div>
     </section>

@@ -4,9 +4,16 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>About Me — Focus Foto</title>
-  <link rel="stylesheet" href="../style.css?v=5" />
+  <link rel="stylesheet" href="../style.css?v=6" />
   <style>
-    /* --- Ajuste la taille de la photo de profil --- */
+    /* --- Style de la photo de profil --- */
+    figure {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto 2rem;
+    }
+
     figure img {
       width: 100%;
       max-width: 420px;
@@ -14,14 +21,11 @@
       border-radius: 12px;
       border: 1px solid var(--border);
       box-shadow: var(--shadow);
+      display: block;
     }
-    /* Sur mobile : plus petite, centrée, avec espace en bas */
+
+    /* Sur mobile : plus petite, ronde et centrée */
     @media (max-width: 700px) {
-      figure {
-        display: flex;
-        justify-content: center;
-        margin-bottom: 1.5rem;
-      }
       figure img {
         width: 70%;
         max-width: 250px;
