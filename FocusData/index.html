@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>FocusData — Data Analysis & Conseil</title>
+  <meta name="description" content="Analyse de données, tableaux de bord, prévisions, expérimentation et conseil.">
+  <link rel="stylesheet" href="./style.css?v=1" />
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="brand">FocusData</div>
+
+        <!-- menu (mobile) -->
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Ouvrir le menu">⋯</button>
+
+        <!-- links -->
+        <div id="site-menu" class="nav-links">
+          <a href="./index.html" aria-current="page">Home</a>
+          <a href="../dist/about_me.html">À propos</a>
+          <a href="../dist/contact.html">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-wrap">
+          <div class="hero-text">
+            <h1>Transformez vos données en décisions.</h1>
+            <p class="lead">
+              J’aide les équipes à clarifier leurs questions, structurer les données et livrer des insights actionnables :
+              tableaux de bord clairs, analyses causales, prévisions fiables.
+            </p>
+            <div class="actions">
+              <a class="btn primary" href="../dist/contact.html">Planifier un appel</a>
+              <a class="btn" href="#services">Voir mes services</a>
+            </div>
+            <ul class="bullets">
+              <li>BI & tableaux de bord</li>
+              <li>Expérimentation (A/B, quasi-expérimental)</li>
+              <li>Prévisions & séries temporelles</li>
+            </ul>
+          </div>
+
+    </section>
+
+    <!-- SERVICES -->
+    <section class="section" id="services">
+      <div class="container">
+        <h2>Services</h2>
+        <div class="grid grid-3">
+          <article class="card">
+            <h3>BI & Visualisation</h3>
+            <p>Design de KPI, modélisation sémantique, tableaux de bord clairs (Power BI, Looker, Metabase).</p>
+          </article>
+          <article class="card">
+            <h3>Expérimentation</h3>
+            <p>Plans A/B, quasi-expérimental (DiD, synthétique), tests robustes, lecture causale des résultats.</p>
+          </article>
+          <article class="card">
+            <h3>Prévisions</h3>
+            <p>Séries temporelles, saisonnalité, anomalies, scénarios (ARIMA/ETS, Prophet, XGBoost).</p>
+          </article>
+          <article class="card">
+            <h3>Data pipeline léger</h3>
+            <p>Ingestion & nettoyage, schémas simples, automatisation (dbt light, Airflow light, cron jobs).</p>
+          </article>
+          <article class="card">
+            <h3>Audit & Gouvernance</h3>
+            <p>Qualité de données, définitions KPI, documentation, vérifications reproductibles.</p>
+          </article>
+          <article class="card">
+            <h3>Coaching & Formation</h3>
+            <p>Bonnes pratiques d’analyse, statistiques appliquées, storytelling & data literacy.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="section alt">
+      <div class="container">
+        <h2>Méthode</h2>
+        <ol class="steps">
+          <li><strong>Cadrage</strong> — objectifs, métriques, contraintes.</li>
+          <li><strong>Sources & modèle</strong> — structure de données, contrôles qualité.</li>
+          <li><strong>Analyse</strong> — tests, visualisation, sensibilité.</li>
+          <li><strong>Livrables</strong> — dashboard, note d’analyse, plan d’action.</li>
+          <li><strong>Transfert</strong> — doc, formation, passation.</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- CASES -->
+    <section class="section">
+      <div class="container">
+        <h2>Études rapides</h2>
+        <div class="grid grid-3">
+          <article class="card case">
+            <div class="kicker">Biomédical</div>
+          </article>
+          <article class="card case">
+            <div class="kicker">Comportemental</div>
+          </article>
+          <article class="card case">
+            <div class="kicker">ONG</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOOLS -->
+    <section class="section alt">
+      <div class="container">
+        <h2>Outils</h2>
+        <ul class="logos">
+          <li>Machine Learning avec Python: Sklearn, Tensorflow, Notebook</li>
+          <li>Analyse inférentielle avec R : Markdown, Modèles mixtes </li>
+          <li>Gestion base de données : SQL</li>
+          <li>Versioning: GitLab / GitHub</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section cta">
+      <div class="container">
+        <div class="cta-box">
+          <h2>Prêt·e à démarrer ?</h2>
+          <p class="lead">Envoyez-moi 3–4 lignes sur votre besoin — je reviens avec une proposition simple et claire.</p>
+          <div>
+            <a class="btn primary" href="../dist/contact.html">Réserver un créneau</a>
+            <a class="btn" href="mailto:ophelia.zimmermann@protonmail.com">Écrire un email</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      © Ophelia Zimmermann — All rights reserved ·
+      <a href="../dist/impressum.html">Impressum</a> ·
+      <a href="../dist/privacy.html">Privacy</a>
+    </div>
+  </footer>
+
+  <!-- Mobile menu JS -->
+  <script>
+  (function(){
+    const btn = document.querySelector('.menu-toggle');
+    const menu = document.getElementById('site-menu');
+    if(!btn || !menu) return;
+
+    const close = ()=>{ menu.classList.remove('open'); btn.setAttribute('aria-expanded','false'); };
+    btn.addEventListener('click', ()=>{
+      const isOpen = menu.classList.toggle('open');
+      btn.setAttribute('aria-expanded', String(isOpen));
+    });
+    document.addEventListener('keydown', e=>{ if(e.key==='Escape') close(); });
+    menu.querySelectorAll('a').forEach(a=>a.addEventListener('click', close));
+  })();
+  </script>
+</body>
+</html>
