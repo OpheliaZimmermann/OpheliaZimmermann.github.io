@@ -75,3 +75,14 @@ main h1{ font-size:clamp(1.5rem, 2.5vw + 0.9rem, 2.4rem); margin:16px 0 8px; }
 /* Buttons in dark theme */
 .btn{ background:#151a1f; color:#e9eef2; border-color:#2a3239; }
 .btn.primary{ background:#7f5af0; border-color:#7f5af0; color:#fff; }
+/* Anti-voile sombre sur le hero */
+.hero-art::before,
+.hero-art::after{
+  content: none !important;
+  background: none !important;
+}
+
+.hero-art{
+  background-blend-mode: normal !important; /* au cas où un blend était actif */
+  filter: none !important;                  /* au cas où un filter sombre traîne */
+}
