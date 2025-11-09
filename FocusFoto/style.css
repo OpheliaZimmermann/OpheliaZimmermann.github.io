@@ -24,9 +24,7 @@ nav{
 }
 
 /* Brand position */
-.brand{
-  font-size: 1.8rem; color:#ffffff; font-weight:800; letter-spacing:.2px;
-}
+.brand{ font-weight:800; letter-spacing:.2px; color:#fff; font-size:1.6rem; cursor: pointer;text-decoration: none }
 
 /* three-dots button (mobile only) */
 .menu-toggle{
