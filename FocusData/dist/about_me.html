@@ -4,8 +4,24 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>À propos — FocusData</title>
-  <meta name="description" content="Profil, approche et domaines d’expertise en analyse de données pour la recherche.">
-  <link rel="stylesheet" href="../style.css?v=14" />
+  <meta name="description" content="Profil, expertise et publications d’Ophelia Zimmermann — soutien statistique pour la recherche (GLMM, longitudinal, R/Python).">
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    /* Page-scoped polish for the portrait */
+    .about-grid{ display:grid; gap:22px; grid-template-columns: 1fr; align-items:start; }
+    @media (min-width: 960px){ .about-grid{ grid-template-columns: .95fr 1.05fr; } }
+    .portrait{
+      border:1px solid var(--border);
+      border-radius:16px;
+      overflow:hidden;
+      background:rgba(255,255,255,.05);
+      box-shadow:var(--shadow);
+    }
+    .portrait img{ width:100%; display:block; height:auto; }
+    .muted a{ color:inherit; text-decoration:underline; }
+    .pubs li{ margin:.35rem 0; }
+    .cv-actions{ display:flex; gap:10px; flex-wrap:wrap; }
+  </style>
 </head>
 <body>
   <header>
@@ -14,7 +30,7 @@
         <div class="brand">FocusData</div>
         <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Ouvrir le menu">⋯</button>
         <div id="site-menu" class="nav-links">
-          <a href="../index.html">Accueil</a>
+          <a href="./index.html">Accueil</a>
           <a href="./about_me.html" aria-current="page">À propos</a>
           <a href="./contact.html">Contact</a>
         </div>
@@ -28,75 +44,52 @@
       <div class="container">
         <div class="hero-wrap">
           <div class="hero-text">
-            <h1>Bonjour, je suis Ophelia.</h1>
+            <h1>Bonjour, je suis Ophelia:</h1>
+            <h1>data scientist pour la recherche.</h1>
             <p class="lead">
-              Data analyst et statisticienne appliquée, j’accompagne des équipes académiques sur des projets
-              biomédicaux et comportementaux. Mon objectif : des analyses <strong>rigoureuses</strong>,
-              <strong>reproductibles</strong> et <strong>claires</strong>, livrées avec un langage scientifique
-              compréhensible par votre équipe.
-            </p>
+            J’aide des équipes académiques à transformer des jeux de données complexes en résultats
+              <strong>rigoureux</strong>, <strong>reproductibles</strong> et <strong>clairs</strong>.</p>
             <ul class="badges">
               <li>Modèles mixtes (GLMM)</li>
-              <li>Analyses longitudinales</li>
-              <li>Visualisation publication-ready</li>
-              <li>R / Python</li>
+              <li>Plans longitudinaux</li>
+              <li>Visualisation</li>
+              <li>R | Python</li>
             </ul>
-          </div>
+          <figure class="portrait">
+            <!-- Replace with your real file: FocusData/assets/profil.jpg -->
+            <img src="../assets/Ophelia-3.jpg" alt="Portrait — Ophelia Zimmermann" loading="lazy" decoding="async">
 
-          <aside class="hero-card">
-            <div class="kicker">Approche</div>
-            <ul class="checklist">
-              <li>Clarifier la question scientifique</li>
-              <li>Choisir un modèle adapté aux données</li>
-              <li>Vérifier les hypothèses et la robustesse</li>
-              <li>Livrer des résultats interprétables</li>
-            </ul>
-          </aside>
+
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- COMPETENCES -->
+    <!-- PUBLICATIONS / TRAVAUX SELECTION -->
     <section class="section">
       <div class="container">
-        <h2>Compétences clés</h2>
-        <div class="grid grid-3">
-          <article class="card">
-            <h3>Inférence</h3>
-            <p>Régressions, effets mixtes, comparaison de groupes, plans longitudinaux.</p>
-          </article>
-          <article class="card">
-            <h3>Séries temporelles</h3>
-            <p>Tendance / saisonnalité, interruptions, détection d’anomalies, prévisions.</p>
-          </article>
-          <article class="card">
-            <h3>Qualité & Reproductibilité</h3>
-            <p>Nettoyage, dictionnaire de données, notebooks reproductibles, dépôt Git.</p>
-          </article>
+        <h2>Travaux & publications (sélection)</h2>
+        <div class="card">
+          <ul class="pubs">
+            <!-- Replace with real entries; keep the format consistent -->
+
+            <li><strong>Cheval, B., Ceravolo, L., Zimmermann, O., Igloi, K., Sander, D., van Ruitenbeek, P., Boisgontier M. P.</strong> (2025). Neural correlates of approach–avoidance tendencies toward physical activity and sedentary stimuli: An MRI study. <em>Imaging Neuroscience </em> <a href="https://doi.org/10.1162/IMAG.a.28" target="_blank" rel="noopener">DOI</a></li>
+            <li><strong>Voegeli, J. V., Bjelogrlic, M., Gaudet-Blavignac, C., Dubos, R., Zimmermann, M. O., Bensahla Talet, A., Zheng, Y., Ehrsam, J., & Lovis, C.</strong> (2024). SIMpat: A Synthetic Benchmark for Similarity Metrics on Patient Representations. <em>Studies in health technology and informatics</em>, 316, 1647–1651.  <a href="10.3233/shti240739" target="_blank" rel="noopener">DOI</a></li>
+            <li><strong>Guedj, C., Tyrand, R., Badier, E., Planchamp, L., Stringer, M., Zimmermann, M.O., Férat, V., Ha-Vinh Leuchter, R. and Grouiller, F.</strong> (2023). Self-regulation of attention in children in a virtual classroom environment: a feasibility study <em>  Bioengineering </em>, 10(12), 1352. <a href="10.3390/bioengineering10121352" target="_blank" rel="noopener">DOI</a></li>
+          </ul>
+          <p class="muted">Liste complète : voir <a href="https://orcid.org/my-orcid?orcid=0000-0002-1167-476X" target="_blank" rel="noopener">ORCID</a></p>
         </div>
       </div>
     </section>
 
-    <!-- OUTILS -->
-    <section class="section alt">
-      <div class="container">
-        <h2>Outils</h2>
-        <ul class="logos">
-          <li>R (tidyverse, lme4, brms)</li>
-          <li>Python (pandas, statsmodels, scikit-learn)</li>
-          <li>Quarto / RMarkdown</li>
-          <li>SQL / DuckDB</li>
-          <li>Git / GitHub</li>
-        </ul>
-      </div>
-    </section>
 
     <!-- CTA -->
     <section class="section cta">
       <div class="container">
         <div class="cta-box">
-          <h2>Parlons de votre projet</h2>
-          <p class="lead">Décrivez votre jeu de données et votre question en quelques lignes.</p>
+          <h2>Discutons de votre projet</h2>
+          <p class="lead">Un court brief suffit pour commencer (domaine, données, échéance).</p>
           <div>
             <a class="btn primary" href="./contact.html">Me contacter</a>
             <a class="btn" href="./etudiant.html">Tarifs étudiants</a>
@@ -109,8 +102,8 @@
   <footer>
     <div class="container">
       © Ophelia Zimmermann — All rights reserved ·
-      <a href="./impressum.html">Impressum</a> ·
-      <a href="./privacy.html">Privacy</a>
+      <a href="../dist/impressum.html">Impressum</a> ·
+      <a href="../dist/privacy.html">Privacy</a>
     </div>
   </footer>
 
