@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>À propos — FocusData</title>
+  <meta name="description" content="Profil, approche et domaines d’expertise en analyse de données pour la recherche.">
+  <link rel="stylesheet" href="./style.css?v=14" />
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="brand">FocusData</div>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Ouvrir le menu">⋯</button>
+        <div id="site-menu" class="nav-links">
+          <a href="./index.html">Accueil</a>
+          <a href="./about_me.html" aria-current="page">À propos</a>
+          <a href="./etudiant.html">Étudiant·e·s</a>
+          <a href="./contact.html">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-wrap">
+          <div class="hero-text">
+            <h1>Bonjour, je suis Ophelia.</h1>
+            <p class="lead">
+              Data analyst et statisticienne appliquée, j’accompagne des équipes académiques sur des projets
+              biomédicaux et comportementaux. Mon objectif : des analyses <strong>rigoureuses</strong>,
+              <strong>reproductibles</strong> et <strong>claires</strong>, livrées avec un langage scientifique
+              compréhensible par votre équipe.
+            </p>
+            <ul class="badges">
+              <li>Modèles mixtes (GLMM)</li>
+              <li>Analyses longitudinales</li>
+              <li>Visualisation publication-ready</li>
+              <li>R / Python</li>
+            </ul>
+          </div>
+
+          <aside class="hero-card">
+            <div class="kicker">Approche</div>
+            <ul class="checklist">
+              <li>Clarifier la question scientifique</li>
+              <li>Choisir un modèle adapté aux données</li>
+              <li>Vérifier les hypothèses et la robustesse</li>
+              <li>Livrer des résultats interprétables</li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPETENCES -->
+    <section class="section">
+      <div class="container">
+        <h2>Compétences clés</h2>
+        <div class="grid grid-3">
+          <article class="card">
+            <h3>Inférence</h3>
+            <p>Régressions, effets mixtes, comparaison de groupes, plans longitudinaux.</p>
+          </article>
+          <article class="card">
+            <h3>Séries temporelles</h3>
+            <p>Tendance / saisonnalité, interruptions, détection d’anomalies, prévisions.</p>
+          </article>
+          <article class="card">
+            <h3>Qualité & Reproductibilité</h3>
+            <p>Nettoyage, dictionnaire de données, notebooks reproductibles, dépôt Git.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- OUTILS -->
+    <section class="section alt">
+      <div class="container">
+        <h2>Outils</h2>
+        <ul class="logos">
+          <li>R (tidyverse, lme4, brms)</li>
+          <li>Python (pandas, statsmodels, scikit-learn)</li>
+          <li>Quarto / RMarkdown</li>
+          <li>SQL / DuckDB</li>
+          <li>Git / GitHub</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section cta">
+      <div class="container">
+        <div class="cta-box">
+          <h2>Parlons de votre projet</h2>
+          <p class="lead">Décrivez votre jeu de données et votre question en quelques lignes.</p>
+          <div>
+            <a class="btn primary" href="./contact.html">Me contacter</a>
+            <a class="btn" href="./etudiant.html">Tarifs étudiants</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      © Ophelia Zimmermann — All rights reserved ·
+      <a href="../dist/impressum.html">Impressum</a> ·
+      <a href="../dist/privacy.html">Privacy</a>
+    </div>
+  </footer>
+
+  <script>
+    (function(){
+      const btn = document.querySelector('.menu-toggle');
+      const menu = document.getElementById('site-menu');
+      if(!btn || !menu) return;
+      const close = ()=>{ menu.classList.remove('open'); btn.setAttribute('aria-expanded','false'); };
+      btn.addEventListener('click', ()=>{ const isOpen = menu.classList.toggle('open'); btn.setAttribute('aria-expanded', String(isOpen)); });
+      document.addEventListener('keydown', e=>{ if(e.key==='Escape') close(); });
+      menu.querySelectorAll('a').forEach(a=>a.addEventListener('click', close));
+    })();
+  </script>
+</body>
+</html>

@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>FocusData — Data Analysis & Conseil</title>
-  <meta name="description" content="Analyse de données, tableaux de bord, prévisions, expérimentation et conseil.">
-  <link rel="stylesheet" href="./style.css?v=1" />
+  <title>FocusData — Soutien statistique pour la recherche</title>
+  <meta name="description" content="Soutien statistique ponctuel pour chercheurs : design d’étude, modèles mixtes, analyses reproductibles (R / Python), visualisation publication-ready.">
+  <link rel="stylesheet" href="./style.css?v=14">
 </head>
 <body>
   <header>
@@ -18,7 +18,7 @@
 
         <!-- links -->
         <div id="site-menu" class="nav-links">
-          <a href="./index.html" aria-current="page">Home</a>
+          <a href="./index.html" aria-current="page">Accueil</a>
           <a href="../dist/about_me.html">À propos</a>
           <a href="../dist/contact.html">Contact</a>
         </div>
@@ -32,98 +32,83 @@
       <div class="container">
         <div class="hero-wrap">
           <div class="hero-text">
-            <h1>Transformez vos données en décisions.</h1>
+            <h1>Soutien statistique pour vos projets de recherche.</h1>
             <p class="lead">
-              J’aide les équipes à clarifier leurs questions, structurer les données et livrer des insights actionnables :
-              tableaux de bord clairs, analyses causales, prévisions fiables.
+              Besoin d’un appui ponctuel pour une étude, une analyse ou une figure d’article&nbsp;?
+              Je vous aide à clarifier vos hypothèses, choisir les bons modèles et livrer des résultats
+              <strong>rigoureux</strong>, <strong>reproductibles</strong> et <strong>clairs</strong>.
+              J’accompagne chercheurs et étudiants dans leurs projets d’analyse de données : 
+              design expérimental, modélisation, interprétation et visualisation claire des résultats.
+              <br><br>
+              Que ce soit pour un <strong>article scientifique</strong>, une <strong>étude ponctuelle</strong> ou une <strong>thèse universitaire</strong>,
+              je vous aide à obtenir des analyses solides et reproductibles.
             </p>
             <div class="actions">
-              <a class="btn primary" href="../dist/contact.html">Planifier un appel</a>
-              <a class="btn" href="#services">Voir mes services</a>
+              <a class="btn primary" href="../dist/contact.html">Demander une collaboration</a>
+              <a class="btn" href="#etudiant">Pour les étudiants</a>
             </div>
-            <ul class="bullets">
-              <li>BI & tableaux de bord</li>
-              <li>Expérimentation (A/B, quasi-expérimental)</li>
-              <li>Prévisions & séries temporelles</li>
+            <ul class="badges">
+              <li>Modèles mixtes (GLMM)</li>
+              <li>Plans longitudinaux</li>
+              <li>Visualisation</li>
+              <li>R | Python</li>
             </ul>
           </div>
 
-    </section>
-
-    <!-- SERVICES -->
-    <section class="section" id="services">
-      <div class="container">
-        <h2>Services</h2>
-        <div class="grid grid-3">
-          <article class="card">
-            <h3>BI & Visualisation</h3>
-            <p>Design de KPI, modélisation sémantique, tableaux de bord clairs (Power BI, Looker, Metabase).</p>
-          </article>
-          <article class="card">
-            <h3>Expérimentation</h3>
-            <p>Plans A/B, quasi-expérimental (DiD, synthétique), tests robustes, lecture causale des résultats.</p>
-          </article>
-          <article class="card">
-            <h3>Prévisions</h3>
-            <p>Séries temporelles, saisonnalité, anomalies, scénarios (ARIMA/ETS, Prophet, XGBoost).</p>
-          </article>
-          <article class="card">
-            <h3>Data pipeline léger</h3>
-            <p>Ingestion & nettoyage, schémas simples, automatisation (dbt light, Airflow light, cron jobs).</p>
-          </article>
-          <article class="card">
-            <h3>Audit & Gouvernance</h3>
-            <p>Qualité de données, définitions KPI, documentation, vérifications reproductibles.</p>
-          </article>
-          <article class="card">
-            <h3>Coaching & Formation</h3>
-            <p>Bonnes pratiques d’analyse, statistiques appliquées, storytelling & data literacy.</p>
-          </article>
+          <aside class="hero-card">
+            <div class="kicker">Livrables typiques</div>
+            <ul class="checklist">
+              <li>Notebook R | Python reproductible</li>
+              <li>Résumé statistique interprétable</li>
+              <li>Visualisation</li>
+            </ul>
+          </aside>
         </div>
       </div>
     </section>
 
-    <!-- PROCESS -->
-    <section class="section alt">
+    <!-- MÉTHODE -->
+    <section class="section" id = methode>
       <div class="container">
         <h2>Méthode</h2>
         <ol class="steps">
-          <li><strong>Cadrage</strong> — objectifs, métriques, contraintes.</li>
-          <li><strong>Sources & modèle</strong> — structure de données, contrôles qualité.</li>
-          <li><strong>Analyse</strong> — tests, visualisation, sensibilité.</li>
-          <li><strong>Livrables</strong> — dashboard, note d’analyse, plan d’action.</li>
-          <li><strong>Transfert</strong> — doc, formation, passation.</li>
+          <li><strong>Cadrage.</strong> Question, hypothèses, variables, contraintes.</li>
+          <li><strong>Préparation.</strong> Nettoyage, dictionnaire de données, plan d’analyse.</li>
+          <li><strong>Modèle.</strong> Ajustement, diagnostics, vérifications d’hypothèses.</li>
+          <li><strong>Résultats.</strong> Estimations, IC, tailles d’effet, figures.</li>
         </ol>
       </div>
     </section>
 
-    <!-- CASES -->
+    <!-- CAS BREFS -->
     <section class="section">
       <div class="container">
-        <h2>Études rapides</h2>
+        <h2>Domaines</h2>
         <div class="grid grid-3">
           <article class="card case">
-            <div class="kicker">Biomédical</div>
+            <div class="kicker">Médical ou comportemental</div>
+            <h3>Inférence</h3>
+            <p class="muted">Modèles mixtes, regression linéaire ou logistique.</p>
           </article>
           <article class="card case">
-            <div class="kicker">Comportemental</div>
-          </article>
-          <article class="card case">
-            <div class="kicker">ONG</div>
+            <div class="kicker">Large datasets</div>
+            <h3>Prédiction</h3>
+            <p class="muted">Machine learning, deep learning, random forest.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- TOOLS -->
-    <section class="section alt">
+    <!-- OUTILS -->
+    <section class="section">
       <div class="container">
         <h2>Outils</h2>
         <ul class="logos">
-          <li>Machine Learning avec Python: Sklearn, Tensorflow, Notebook</li>
-          <li>Analyse inférentielle avec R : Markdown, Modèles mixtes </li>
-          <li>Gestion base de données : SQL</li>
-          <li>Versioning: GitLab / GitHub</li>
+          <li>R (tidyverse, lme4, data.table)</li>
+          <li>Python (pandas, statsmodels, scikit-learn)</li>
+          <li>RMarkdown</li>
+          <li>SQL</li>
+          <li>Git</li>
         </ul>
       </div>
     </section>
@@ -132,10 +117,10 @@
     <section class="section cta">
       <div class="container">
         <div class="cta-box">
-          <h2>Prêt·e à démarrer ?</h2>
-          <p class="lead">Envoyez-moi 3–4 lignes sur votre besoin — je reviens avec une proposition simple et claire.</p>
+          <h2>Besoin d’un avis statistique&nbsp;?</h2>
+          <p class="lead">Décrivez en quelques lignes votre jeu de données et votre question. Réponse rapide et devis transparent.</p>
           <div>
-            <a class="btn primary" href="../dist/contact.html">Réserver un créneau</a>
+            <a class="btn primary" href="../dist/contact.html">Me contacter</a>
             <a class="btn" href="mailto:ophelia.zimmermann@protonmail.com">Écrire un email</a>
           </div>
         </div>
@@ -153,19 +138,19 @@
 
   <!-- Mobile menu JS -->
   <script>
-  (function(){
-    const btn = document.querySelector('.menu-toggle');
-    const menu = document.getElementById('site-menu');
-    if(!btn || !menu) return;
+    (function(){
+      const btn = document.querySelector('.menu-toggle');
+      const menu = document.getElementById('site-menu');
+      if(!btn || !menu) return;
 
-    const close = ()=>{ menu.classList.remove('open'); btn.setAttribute('aria-expanded','false'); };
-    btn.addEventListener('click', ()=>{
-      const isOpen = menu.classList.toggle('open');
-      btn.setAttribute('aria-expanded', String(isOpen));
-    });
-    document.addEventListener('keydown', e=>{ if(e.key==='Escape') close(); });
-    menu.querySelectorAll('a').forEach(a=>a.addEventListener('click', close));
-  })();
+      const close = ()=>{ menu.classList.remove('open'); btn.setAttribute('aria-expanded','false'); };
+      btn.addEventListener('click', ()=>{
+        const isOpen = menu.classList.toggle('open');
+        btn.setAttribute('aria-expanded', String(isOpen));
+      });
+      document.addEventListener('keydown', e=>{ if(e.key==='Escape') close(); });
+      menu.querySelectorAll('a').forEach(a=>a.addEventListener('click', close));
+    })();
   </script>
 </body>
 </html>

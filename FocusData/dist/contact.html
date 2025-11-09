@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Contact — FocusData</title>
+  <meta name="description" content="Contact pour demandes de collaboration, devis et questions statistiques.">
+  <link rel="stylesheet" href="../style.css?v=14" />
+  <style>
+    /* Page-scoped form polish for dark theme */
+    .contact-form{ max-width: 760px; margin: 0 auto; display: grid; gap: 16px; }
+    label{ font-weight:700; }
+    input, textarea{
+      width:100%; padding:12px 14px; border-radius:12px;
+      border:1px solid var(--border); background: rgba(255,255,255,.06);
+      color:#fff; font:inherit;
+    }
+    input::placeholder, textarea::placeholder{ color:rgba(255,255,255,.6); }
+    input:focus, textarea:focus{ outline:none; box-shadow:0 0 0 3px rgba(125,211,252,.25); border-color:rgba(125,211,252,.5); }
+    textarea{ min-height:160px; resize:vertical; }
+    .helper{ color:var(--muted); font-size:.95rem; }
+    .row{ display:grid; gap:16px; grid-template-columns: 1fr 1fr; }
+    @media (max-width: 800px){ .row{ grid-template-columns:1fr; } }
+    .inline-actions{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="brand">FocusData</div>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Ouvrir le menu">⋯</button>
+        <div id="site-menu" class="nav-links">
+          <a href="./index.html">Accueil</a>
+          <a href="./about_me.html">À propos</a>
+          <a href="./contact.html" aria-current="page">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="hero-wrap">
+          <div class="hero-text">
+            <h1>Planifions votre analyse</h1>
+            <p class="lead">
+              Dites-moi en quelques lignes votre contexte, vos données et votre question.
+              Je reviens rapidement avec une proposition claire.
+            </p>
+          </div>
+          <aside class="hero-card">
+            <div class="kicker">Conseil rapide</div>
+            <ul class="checklist">
+              <li>Réponse sous 1–2 jours ouvrés</li>
+              <li>Devis simple & transparent</li>
+              <li>Livrables reproductibles</li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="card">
+          <!-- Formspree: replace action with your endpoint if needed -->
+          <form id="contact-form" class="contact-form" action="https://formspree.io/f/xwpwgykk" method="POST">
+            <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+            <div class="row">
+              <div>
+                <label for="name">Nom complet</label>
+                <input id="name" name="name" type="text" required />
+              </div>
+              <div>
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" required />
+              </div>
+            </div>
+
+            <div class="row">
+              <div>
+                <label for="affiliation">Affiliation</label>
+                <input id="affiliation" name="affiliation" type="text" placeholder="Université, labo, hôpital…" />
+              </div>
+              <div>
+                <label for="deadline">Échéance (si connue)</label>
+                <input id="deadline" name="deadline" type="date" />
+              </div>
+            </div>
+
+            <div>
+              <label for="topic">Sujet / type d’analyse</label>
+              <input id="topic" name="topic" type="text" placeholder="GLMM, séries temporelles, Diff-in-Diff…" />
+            </div>
+
+            <div>
+              <label for="message">Message</label>
+              <textarea id="message" name="message" required placeholder="Décrivez brièvement vos données (taille, variables, format) et votre question."></textarea>
+              <p class="helper">En envoyant, vous acceptez la <a href="../dist/privacy.html">politique de confidentialité</a>.</p>
+            </div>
+
+            <input type="hidden" name="_subject" value="Nouveau message — FocusData">
+            <input type="hidden" name="_redirect" value="https://opheliazimmermann.github.io/FocusData/merci.html">
+
+            <div class="inline-actions">
+              <button class="btn primary" type="submit">Envoyer</button>
+              <button class="btn" type="button" onclick="window.location.href='mailto:ophelia.zimmermann@protonmail.com'">Ou écrire un email</button>
+              <span id="form-status" class="helper" aria-live="polite"></span>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      © Ophelia Zimmermann — All rights reserved ·
+      <a href="../dist/impressum.html">Impressum</a> ·
+      <a href="../dist/privacy.html">Privacy</a>
+    </div>
+  </footer>
+
+  <script>
+    (function(){
+      const btn = document.querySelector('.menu-toggle');
+      const menu = document.getElementById('site-menu');
+      if(!btn || !menu) return;
+      const close = ()=>{ menu.classList.remove('open'); btn.setAttribute('aria-expanded','false'); };
+      btn.addEventListener('click', ()=>{ const isOpen = menu.classList.toggle('open'); btn.setAttribute('aria-expanded', String(isOpen)); });
+      document.addEventListener('keydown', e=>{ if(e.key==='Escape') close(); });
+      menu.querySelectorAll('a').forEach(a=>a.addEventListener('click', close));
+    })();
+  </script>
+</body>
+</html>

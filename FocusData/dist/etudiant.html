@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Étudiant·e·s — FocusData</title>
+  <meta name="description" content="Accompagnement statistique pour étudiant·e·s : thèse, mémoire, TPs, figures publication-ready. Tarifs adaptés.">
+  <link rel="stylesheet" href="../style.css?v=14" />
+  <style>
+    .pricing{ display:grid; gap:16px; grid-template-columns: repeat(3, minmax(0,1fr)); }
+    @media (max-width: 900px){ .pricing{ grid-template-columns: 1fr; } }
+    .price-card .price{ font-size:2rem; font-weight:800; margin:6px 0; }
+    .note{ color:var(--muted); font-size:.95rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="brand">FocusData</div>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Ouvrir le menu">⋯</button>
+        <div id="site-menu" class="nav-links">
+          <a href="./index.html">Accueil</a>
+          <a href="./about_me.html">À propos</a>
+          <a href="./contact.html">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-wrap">
+          <div class="hero-text">
+            <h1>Accompagnement thèse & mémoire</h1>
+            <p class="lead">
+              Besoin d’un regard statistique pour votre thèse, mémoire ou article&nbsp;?
+              Je propose des <strong>tarifs adaptés</strong> et des livrables <strong>reproductibles</strong>
+              (notebooks R/Python, figures prêtes pour la soumission).
+            </p>
+            <div class="actions">
+              <a class="btn primary" href="./contact.html">Demander un devis</a>
+              <a class="btn" href="mailto:ophelia.zimmermann@protonmail.com">Poser une question</a>
+            </div>
+          </div>
+
+          <aside class="hero-card">
+            <div class="kicker">Ce que je peux faire</div>
+            <ul class="checklist">
+              <li>Choix des tests / modèles</li>
+              <li>Nettoyage & structuration des données</li>
+              <li>Modèles mixtes, séries temporelles</li>
+              <li>Visualisations publication-ready</li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING -->
+    <section class="section">
+      <div class="container">
+        <h2>Tarifs étudiants</h2>
+        <div class="pricing">
+          <article class="card price-card">
+            <h3>Point-conseil 45 min</h3>
+            <div class="price">CHF 60</div>
+            <p>Éclaircir la question, orienter le plan d’analyse, débloquer un point précis.</p>
+          </article>
+          <article class="card price-card">
+            <h3>Pack analyse 1/2 journée</h3>
+            <div class="price">CHF 220</div>
+            <p>Nettoyage ciblé, première modélisation, figure + mini-note de résultats.</p>
+          </article>
+          <article class="card price-card">
+            <h3>Pack thèse / mémoire</h3>
+            <div class="price">Sur devis</div>
+            <p>Accompagnement de bout en bout : plan d’analyse, modèles, figures, relectures.</p>
+          </article>
+        </div>
+        <p class="note">Tarifs indicatifs TTC, sujets académiques uniquement. Réductions selon bourse/financement.</p>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="section alt">
+      <div class="container">
+        <h2>Déroulé</h2>
+        <ol class="steps">
+          <li><strong>Brief.</strong> Contexte, question, données (format, taille, variables).</li>
+          <li><strong>Devis.</strong> Proposition claire avec livrables et délai.</li>
+          <li><strong>Analyse.</strong> Notebook reproductible, échanges courts.</li>
+          <li><strong>Livrables.</strong> Résumé statistique & figures.</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section cta">
+      <div class="container">
+        <div class="cta-box">
+          <h2>Besoin d’un accompagnement&nbsp;?</h2>
+          <p class="lead">Écrivez-moi votre sujet, votre échéance et vos attentes.</p>
+          <div>
+            <a class="btn primary" href="./contact.html">Me contacter</a>
+            <a class="btn" href="mailto:ophelia.zimmermann@protonmail.com">Email direct</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      © Ophelia Zimmermann — All rights reserved ·
+      <a href="../dist/impressum.html">Impressum</a> ·
+      <a href="../dist/privacy.html">Privacy</a>
+    </div>
+  </footer>
+
+  <script>
+    (function(){
+      const btn = document.querySelector('.menu-toggle');
+      const menu = document.getElementById('site-menu');
+      if(!btn || !menu) return;
+      const close = ()=>{ menu.classList.remove('open'); btn.setAttribute('aria-expanded','false'); };
+      btn.addEventListener('click', ()=>{ const isOpen = menu.classList.toggle('open'); btn.setAttribute('aria-expanded', String(isOpen)); });
+      document.addEventListener('keydown', e=>{ if(e.key==='Escape') close(); });
+      menu.querySelectorAll('a').forEach(a=>a.addEventListener('click', close));
+    })();
+  </script>
+</body>
+</html>
