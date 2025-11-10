@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="theme-color" content="#17A2B8">
-  <title>Focus Foto — Home</title>
+  <title>FocusFoto— Home</title>
   <link rel="stylesheet" href="./style.css?v=6" />
 </head>
 <body>
@@ -103,13 +103,77 @@
     <!-- JS menu mobile -->
   <script>
   (function(){
-    const btn=document.querySelector('.menu-toggle');
-    const menu=document.getElementById('site-menu');
-    if(!btn||!menu)return;
-    const close=()=>{menu.classList.remove('open');btn.setAttribute('aria-expanded','false');};
-    btn.addEventListener('click',()=>{const open=menu.classList.toggle('open');btn.setAttribute('aria-expanded',open);});
-    document.addEventListener('keydown',e=>{if(e.key==='Escape')close();});
-    menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',close));
+    const tiles = Array.from(document.querySelectorAll('.gallery-grid .tile'));
+    const lb = document.getElementById('lightbox');
+    if (!tiles.length || !lb) return;
+
+    const img  = lb.querySelector('img');
+    const btnClose = lb.querySelector('.close');
+    const btnPrev  = lb.querySelector('.prev');
+    const btnNext  = lb.querySelector('.next');
+    let i = 0;
+
+    function show(n){
+      i = (n + tiles.length) % tiles.length;
+      const a = tiles[i];
+      img.src = a.getAttribute('href');
+      img.alt = a.dataset.title || a.querySelector('img')?.alt || '';
+    }
+
+    function open(n){
+      show(n);
+      lb.classList.add('open');
+      lb.setAttribute('aria-hidden','false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function close(){
+      lb.classList.remove('open');
+      lb.setAttribute('aria-hidden','true');
+      document.body.style.overflow = '';
+      img.src = '';
+    }
+
+    function prev(){ show(i - 1); }
+    function next(){ show(i + 1); }
+
+    tiles.forEach((a, idx) => {
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        open(idx);
+      });
+    });
+
+    btnClose.addEventListener('click', close);
+    btnPrev.addEventListener('click', prev);
+    btnNext.addEventListener('click', next);
+    lb.addEventListener('click', (e) => { if (e.target === lb) close(); });
+
+    document.addEventListener('keydown', (e) => {
+      if (!lb.classList.contains('open')) return;
+      if (e.key === 'Escape') close();
+      if (e.key === 'ArrowLeft') prev();
+      if (e.key === 'ArrowRight') next();
+    });
+
+    // Swipe support (mobile)
+    let sx = 0, sy = 0, touching = false;
+    lb.addEventListener('touchstart', (e) => {
+      if (!lb.classList.contains('open')) return;
+      const t = e.changedTouches[0];
+      sx = t.clientX; sy = t.clientY; touching = true;
+    }, {passive:true});
+
+    lb.addEventListener('touchend', (e) => {
+      if (!touching) return;
+      const t = e.changedTouches[0];
+      const dx = t.clientX - sx;
+      const dy = t.clientY - sy;
+      touching = false;
+      if (Math.abs(dx) > 40 && Math.abs(dy) < 60){
+        if (dx < 0) next(); else prev();
+      }
+    }, {passive:true});
   })();
   </script>
 
