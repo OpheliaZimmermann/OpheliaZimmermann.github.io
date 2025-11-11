@@ -1,131 +1,77 @@
-/* ================================
-   OutOfFocus — clean stylesheet
-   Desktop: unchanged hero
-   Mobile: fixed split background + vertical title with inline links
-   ================================ */
+/* ---------- Out of Focus mobile-first fixes ---------- */
 
-/* ---------- Base palette ---------- */
+/* Palette / vibe (adjust if you want) */
 :root{
-  --ink: #0e1116;
-  --bg: #ffffff;
-  --muted: #667085;
-  --line: #e7e9ee;
-
-  /* Brand blues (mobile split) */
-  --blue-a: #17A2B8; /* left / OutOf */
-  --blue-b: #001F3F; /* right / Focus */
+  --bg:#0c0c0d;
+  --text:#e9eef2;
+  --muted:#9aa4ad;
+  --border:#1f2429;
+  --accent:#7f5af0; /* accent for header/buttons */
 }
 
-@media (prefers-color-scheme: dark){
-  :root{
-    --ink:#e9edf2; --bg:#0b0c10; --muted:#9aa3b2; --line:#242832;
+/* Dark surfaces */
+html,body{ background:var(--bg); color:var(--text); }
+header{ background:var(--accent); }
+footer{ background:#0e1114; border-top-color:var(--border); color:var(--muted); }
+.card{ background:#111418; border-color:var(--border); }
+
+/* Container: tighter on phones */
+.container{ padding:14px; }
+@media (min-width:640px){ .container{ padding:20px; }}
+
+/* Header: center brand on mobile, hide inline links behind menu */
+.brand{ color:#fff; }
+.nav-links a{ color:#fff; }
+.nav-links a:hover{ background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.25); }
+
+@media (max-width: 900px){
+  nav{ justify-content:center; }
+  .brand{ text-align:center; width:100%; }
+
+  .menu-toggle{
+    display:block; position:absolute; right:14px; top:50%;
+    transform:translateY(-50%); color:#fff; border:1px solid rgba(255,255,255,.6);
+    background:transparent; padding:8px 12px; border-radius:999px;
   }
+
+  .nav-links{
+    display:none !important;
+    position:absolute; right:14px; top:58px; z-index:1000;
+    flex-direction:column; gap:8px; padding:10px;
+    background:#ffffff; color:#111; border:1px solid #e6e6e6;
+    border-radius:12px;
+    min-width: 180px;
+  }
+  .nav-links a{ color:#111; }
+  .nav-links a:hover{ background:#f4f8f9; border-color:#e2eef1; }
+  .nav-links.open{ display:flex !important; }
 }
 
-/* ---------- Reset / layout ---------- */
-*{ box-sizing:border-box }
-html,body{ height:100% }
-body{
-  margin:0; background:var(--bg); color:var(--ink);
-  font:16px/1.6 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-}
-.container{ width:min(100% - 32px, 1080px); margin-inline:auto; }
+/* Typography tighter on mobile */
+main h1{ font-size:clamp(1.5rem, 2.5vw + 0.9rem, 2.4rem); margin:16px 0 8px; }
+.lead{ color:var(--muted); margin:0 0 14px; }
 
-/* ---------- Header / Nav (minimal) ---------- */
-header{ position:sticky; top:0; background:var(--bg); border-bottom:1px solid var(--line); z-index:20 }
-nav{ display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 0 }
-.brand{ text-decoration:none; color:inherit; font-weight:700; }
-.menu-toggle{ display:none; border:1px solid var(--line); background:transparent; padding:6px 10px; border-radius:999px }
-.nav-links{ display:flex; gap:12px; flex-wrap:wrap }
-.nav-links a{ color:inherit; text-decoration:none; padding:6px 10px; border-radius:8px }
-.nav-links a[aria-current="page"]{ text-decoration:underline; text-underline-offset:3px }
-
-@media (max-width:900px){
-  .menu-toggle{ display:inline-block }
-  nav{ flex-wrap:wrap }
-  .nav-links{ width:100%; display:none; padding-top:8px; border-top:1px solid var(--line) }
-  .nav-links.open{ display:flex }
-}
-
-/* ---------- Buttons / utilities ---------- */
-.btn{ display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border:1px solid var(--line); border-radius:999px; color:inherit; text-decoration:none; background:transparent }
-.btn:hover{ background:rgba(0,0,0,.03) }
-@media (prefers-color-scheme: dark){ .btn:hover{ background:rgba(255,255,255,.06) } }
-.muted{ color:var(--muted) }
-
-/* ---------- Gallery (kept simple) ---------- */
+/* Gallery: make tiles smaller on phones so we get 2–3 columns */
 .gallery-grid{
-  display:grid; gap:12px;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap:10px;
+  margin:14px 0 8px;
 }
-.tile{ border:1px solid var(--line); border-radius:12px; overflow:hidden; aspect-ratio:4/3; background:#0002 }
-.tile img{ width:100%; height:100%; object-fit:cover; display:block }
-
-/* ---------- Footer ---------- */
-footer{ border-top:1px solid var(--line); padding:16px 0; color:var(--muted) }
-footer a{ color:inherit; text-decoration:underline }
-
-/* =========================================================
-   MOBILE-ONLY: fixed split background + vertical OutOfFocus
-   ========================================================= */
-.hero-vertical-mobile{ display:none }  /* hidden on desktop */
-
-/* If your desktop hero uses one of these classes, we’ll hide it on mobile */
-@media (max-width:768px){
-  /* 1) Fixed full-viewport split background (left/right) */
-  html, body { height: 100%; }
-  body{
-    background:
-      linear-gradient(to right,
-        var(--blue-a) 0%,
-        var(--blue-a) 50%,
-        var(--blue-b) 50%,
-        var(--blue-b) 100%);
-    background-attachment: fixed; /* split stays while scrolling */
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-  }
-
-  /* 2) Hide desktop hero bits */
-  .hero, .hero-art, .masthead{ display:none !important; }
-
-  /* 3) Fixed left panel for the vertical word */
-  .hero-vertical-mobile{
-    display:flex !important;
-    position:fixed;
-    top:0; bottom:0; left:0;
-    width:50vw;     /* left half */
-    justify-content:center; align-items:center;
-    z-index:15;
-    pointer-events:none;   /* do not block page; links inside will re-enable */
-  }
-
-  .hero-vertical-mobile .letters{
-    display:flex; flex-direction:column; align-items:center; justify-content:center;
-    gap: clamp(6px, 1.2vh, 12px);
-    color:#fff; font-weight:800; line-height:1; user-select:none;
-    font-size: clamp(40px, 10vh, 80px);
-  }
-
-  .hero-vertical-mobile .letters span{
-    position:relative; display:block;
-  }
-
-  /* 4) Inline link tags next to specific letters */
-  .inline-tag{
-    position:absolute; top:50%; transform:translateY(-50%);
-    white-space:nowrap; color:#fff; text-decoration:none; font-weight:700;
-    font-size: clamp(12px, 2.4vh, 18px);
-    pointer-events:auto;    /* clickable */
-  }
-  .inline-tag:hover{ text-decoration:underline }
-
-  /* Place “foto” to the right of the last f (left/blue-a side) */
-  .mark-f .inline-tag{ left: 120%; }
-
-  /* Place “statistique” to the left of the last s (right/blue-b side) */
-  .mark-s .inline-tag{ right: 120%; text-align:right; }
-
-  /* 5) Keep page content readable on the right half */
-  main, .container{ padding-left: 52vw; }  /* content lives on the right side */
+@media (min-width:640px){
+  .gallery-grid{ gap:14px; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); }
 }
+@media (min-width:960px){
+  .gallery-grid{ gap:18px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+}
+
+/* Tiles: subtle mood + keep aspect */
+.tile{ background:#111418; border-color:var(--border); aspect-ratio:4/3; border-radius:12px; overflow:hidden; }
+.tile img{ width:100%; height:100%; object-fit:cover; display:block; filter:grayscale(15%) contrast(1.05); }
+@media (hover:hover) and (pointer:fine){
+  .tile:hover img{ transform:scale(1.03); transition:transform .3s ease; }
+}
+
+/* Buttons in dark theme */
+.btn{ background:#151a1f; color:#e9eef2; border-color:#2a3239; }
+.btn.primary{ background:#7f5af0; border-color:#7f5af0; color:#fff; }
