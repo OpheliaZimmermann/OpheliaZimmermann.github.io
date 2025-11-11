@@ -76,48 +76,53 @@ main h1{ font-size:clamp(1.5rem, 2.5vw + 0.9rem, 2.4rem); margin:16px 0 8px; }
 .btn{ background:#151a1f; color:#e9eef2; border-color:#2a3239; }
 .btn.primary{ background:#7f5af0; border-color:#7f5af0; color:#fff; }
 /* ===== Index mobile hero (vertical word) ===== */
-
-/* 1) Couleurs (à remplacer par tes bleus exacts) */
+/* ===== Mobile-only vertical hero for index ===== */
 :root{
-  --blue-a: #6EC7FF; /* bleu clair (OutOf)  — placeholder */
-  --blue-b: #1E6FBF; /* bleu plus foncé (Focus) — placeholder */
+  --blue-a: #17A2B8; /* bleu clair (OutOf) */
+  --blue-b: #001F3F; /* bleu foncé (Focus) */
 }
 
-/* 2) Caché par défaut (desktop garde l’existant) */
-.hero-vertical-mobile{ display:none; }
+/* Hidden by default (desktop unchanged) */
+.hero-vertical-mobile {
+  display: none;
+}
 
-/* 3) Mobile: afficher le hero vertical + cacher l’ancien hero d’accueil */
+/* Mobile version */
 @media (max-width: 768px){
+  /* Hide your desktop hero image section on mobile */
+  .hero, .hero-art, .masthead {
+    display: none !important;
+  }
 
-  /* Si tu as ajouté <body class="is-home">, on scope proprement */
-  body.is-home .hero-vertical-mobile{
-    display:flex !important;
-    align-items:center;
-    justify-content:center;
-    min-height:100svh;
-    padding:24px 0;
-    /* Fond bicolore 50/50 vertical (haut/bas) */
-    background: linear-gradient(to bottom,
+  /* Show the vertical version */
+  .hero-vertical-mobile {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    min-height: 100svh; /* full screen height, handles mobile bars */
+    padding: 24px 0;
+    background: linear-gradient(
+      to bottom,
       var(--blue-a) 0%,
       var(--blue-a) 50%,
       var(--blue-b) 50%,
-      var(--blue-b) 100%);
+      var(--blue-b) 100%
+    ) !important;
   }
 
-  body.is-home .hero-vertical-mobile .letters{
-    display:flex; flex-direction:column; align-items:center;
+  .hero-vertical-mobile .letters {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     gap: clamp(6px, 1.2vh, 12px);
-    color:#fff; font-weight:800;
+    color: #fff;
+    font-weight: 800;
     font-size: clamp(44px, 10vh, 96px);
-    line-height:1; user-select:none;
+    line-height: 1;
+    user-select: none;
   }
 
-  /* Cacher ton hero/image desktop sur mobile pour la page d’accueil
-     Remplace .hero, .hero-art, .masthead par la vraie classe de ta section hero desktop */
-  body.is-home .hero,
-  body.is-home .hero-art,
-  body.is-home .masthead,
-  body.is-home .equal-panels { /* si tu as des panneaux sous l’image et que tu veux les masquer aussi */
-    display:none !important;
+  .hero-vertical-mobile .letters span {
+    display: block;
   }
 }
