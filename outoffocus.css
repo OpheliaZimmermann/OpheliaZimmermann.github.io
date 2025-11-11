@@ -126,3 +126,64 @@ main h1{ font-size:clamp(1.5rem, 2.5vw + 0.9rem, 2.4rem); margin:16px 0 8px; }
     display: block;
   }
 }
+/* ===== Mobile-only vertical hero + fixed split background ===== */
+:root {
+  --blue-a: #17A2B8; /* bleu clair (OutOf) */
+  --blue-b: #001F3F; /* bleu foncé (Focus) */
+}
+
+/* Hide by default */
+.hero-vertical-mobile { display: none; }
+
+/* Mobile version */
+@media (max-width: 768px) {
+  /* Fix the two-tone background across the whole viewport */
+  body {
+    background: linear-gradient(
+      to right,
+      var(--blue-a) 0%,
+      var(--blue-a) 50%,
+      var(--blue-b) 50%,
+      var(--blue-b) 100%
+    );
+    background-attachment: fixed; /* keeps split static while scrolling */
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
+
+  /* Hide your desktop hero and other unwanted hero elements */
+  .hero, .hero-art, .masthead {
+    display: none !important;
+  }
+
+  /* Vertical word on the left */
+  .hero-vertical-mobile {
+    display: flex !important;
+    position: fixed; /* stays visible while scrolling */
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 50%; /* takes left half (the light blue zone) */
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    pointer-events: none; /* so links below stay clickable */
+  }
+
+  .hero-vertical-mobile .letters {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 800;
+    font-size: clamp(40px, 10vh, 80px);
+    line-height: 1;
+    gap: clamp(6px, 1vh, 10px);
+    user-select: none;
+  }
+
+  .hero-vertical-mobile .letters span {
+    display: block;
+  }
+}
