@@ -167,3 +167,93 @@ main h1{ font-size:clamp(1.5rem, 2.5vw + 0.9rem, 2.4rem); margin:16px 0 8px; }
     text-align:right;
   }
 }
+/* =======================================================
+   MOBILE-ONLY VERTICAL OutOfFocus FULLSCREEN HERO
+   =======================================================*/
+:root{
+  --blue-a: #17A2B8;
+  --blue-b: #001F3F;
+}
+
+.oof-mobile-hero{ display:none; }
+
+@media (max-width:768px){
+
+  html, body{
+    height:100%;
+    margin:0;
+    padding:0;
+  }
+
+  /* full background, no scroll, no content visible */
+  body{
+    overflow:hidden;
+    background: linear-gradient(
+      to right,
+      var(--blue-a) 0%,
+      var(--blue-a) 50%,
+      var(--blue-b) 50%,
+      var(--blue-b) 100%
+    );
+    background-attachment: fixed;
+    background-size: 100% 100%;
+  }
+
+  /* hide main page content */
+  body > header,
+  body > main,
+  body > footer{
+    display:none !important;
+  }
+
+  /* show fullscreen mobile hero */
+  .oof-mobile-hero{
+    display:flex !important;
+    position:fixed;
+    inset:0;
+    z-index:9999;
+    align-items:center;
+    justify-content:center;
+    background:transparent;
+  }
+
+  .oof-letters{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap: clamp(6px, 1vh, 12px);
+    color:#fff;
+    font-weight:800;
+    font-size:clamp(44px, 10vh, 96px);
+    line-height:1;
+  }
+
+  .oof-letters span{
+    display:block;
+    position:relative;
+  }
+
+  /* inline links */
+  .oof-tag{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    white-space:nowrap;
+    color:#fff;
+    font-weight:700;
+    font-size:clamp(14px, 2vh, 20px);
+    text-decoration:none;
+  }
+  .oof-tag:hover{ text-decoration:underline; }
+
+  /* foto → right of "f" */
+  .oof-mark-f .oof-tag-foto{
+    left:120%;
+  }
+
+  /* statistique → left of "s" */
+  .oof-mark-s .oof-tag-data{
+    right:120%;
+    text-align:right;
+  }
+}
