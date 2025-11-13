@@ -76,138 +76,43 @@ main h1{ font-size:clamp(1.5rem, 2.5vw + 0.9rem, 2.4rem); margin:16px 0 8px; }
 .btn{ background:#151a1f; color:#e9eef2; border-color:#2a3239; }
 .btn.primary{ background:#7f5af0; border-color:#7f5af0; color:#fff; }
 /* ===== Mobile-only, full-background, vertical OutOfFocus ===== */
-:root{
-  --blue-a: #17A2B8; /* left half */
-  --blue-b: #001F3F; /* right half */
-}
 
-/* hidden by default (desktop unchanged) */
-.hero-vertical-mobile{ display:none; }
-
-@media (max-width: 768px){
-  /* Make the background fill the whole screen and stay split while scrolling */
-  html, body { height: 100%; }
-  body{
-    overflow: hidden; /* no page content behind */
-    background: linear-gradient(
-      to right,
-      var(--blue-a) 0%,
-      var(--blue-a) 50%,
-      var(--blue-b) 50%,
-      var(--blue-b) 100%
-    );
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-  }
-
-  /* Hide everything else on mobile */
-  header, main, footer { display: none !important; }
-
-  /* Show the vertical word, centered */
-  .hero-vertical-mobile{
-    display: flex !important;
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
-    align-items: center;
-    justify-content: center;
-    background: transparent; /* we use the body gradient */
-  }
-
-  .hero-vertical-mobile .letters{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: clamp(6px, 1.2vh, 12px);
-    color: #fff;
-    font-weight: 800;
-    font-size: clamp(44px, 10vh, 96px);
-    line-height: 1;
-    user-select: none;
-  }
-
-  .hero-vertical-mobile .letters span{
-    display: block;
-  }
-}
-@media (max-width: 768px){
-
-  /* Horizontal link tags anchored to last f and last s */
-  .inline-tag{
-    position:absolute;
-    top:50%;
-    transform: translateY(-50%);
-    white-space:nowrap;
-    font-weight:700;
-    font-size: clamp(14px, 2.2vh, 20px);
-    color:#fff;
-    text-decoration:none;
-    pointer-events:auto;   /* clickable even though the block is not */
-  }
-
-  .inline-tag:hover{
-    text-decoration:underline;
-  }
-
-  /* --- FOTO (on the last f) --- */
-  .mark-f{
-    position:relative;
-  }
-  .mark-f .inline-tag{
-    left: 120%;       /* pushes text right of the “f” */
-  }
-
-  /* --- STATISTIQUE (on the last s) --- */
-  .mark-s{
-    position:relative;
-  }
-  .mark-s .inline-tag{
-    right: 120%;      /* pushes text left of the “s” */
-    text-align:right;
-  }
-}
-/* =======================================================
-   MOBILE-ONLY VERTICAL OutOfFocus FULLSCREEN HERO
-   =======================================================*/
-:root{
-  --blue-a: #17A2B8;
-  --blue-b: #001F3F;
-}
-
-.oof-mobile-hero{ display:none; }
+/* ============= OutOfFocus — plein écran mobile ============= */
+.hero-vertical-mobile{ display:none; } /* caché par défaut (desktop) */
 
 @media (max-width:768px){
 
+  /* 1. Fond plein écran, pas de scroll, pas de contenu derrière */
   html, body{
     height:100%;
     margin:0;
     padding:0;
   }
 
-  /* full background, no scroll, no content visible */
-  body{
+  body.theme-outoffocus{
     overflow:hidden;
+    /* dégradé partout (gauche = bleu foncé, droite = bleu clair) */
     background: linear-gradient(
       to right,
-      var(--blue-a) 0%,
-      var(--blue-a) 50%,
-      var(--blue-b) 50%,
-      var(--blue-b) 100%
+      #001F3F 0%,
+      #001F3F 50%,
+      #17A2B8 50%,
+      #17A2B8 100%
     );
-    background-attachment: fixed;
-    background-size: 100% 100%;
+    background-attachment:fixed;
+    background-repeat:no-repeat;
+    background-size:100% 100%;
   }
 
-  /* hide main page content */
-  body > header,
-  body > main,
-  body > footer{
+  /* on masque tout le reste de la page sur mobile */
+  body.theme-outoffocus > header,
+  body.theme-outoffocus > main,
+  body.theme-outoffocus > footer{
     display:none !important;
   }
 
-  /* show fullscreen mobile hero */
-  .oof-mobile-hero{
+  /* 2. On affiche seulement le mot vertical */
+  body.theme-outoffocus .hero-vertical-mobile{
     display:flex !important;
     position:fixed;
     inset:0;
@@ -217,42 +122,47 @@ main h1{ font-size:clamp(1.5rem, 2.5vw + 0.9rem, 2.4rem); margin:16px 0 8px; }
     background:transparent;
   }
 
-  .oof-letters{
+  body.theme-outoffocus .hero-vertical-mobile .letters{
     display:flex;
     flex-direction:column;
     align-items:center;
-    gap: clamp(6px, 1vh, 12px);
+    justify-content:center;
+    gap:clamp(6px,1.2vh,12px);
     color:#fff;
     font-weight:800;
-    font-size:clamp(44px, 10vh, 96px);
+    font-size:clamp(44px,10vh,96px);
     line-height:1;
+    user-select:none;
   }
 
-  .oof-letters span{
-    display:block;
+  body.theme-outoffocus .hero-vertical-mobile .letters span{
     position:relative;
+    display:block;
   }
 
-  /* inline links */
-  .oof-tag{
+  /* 3. Petits liens “foto” et “statistique” */
+  body.theme-outoffocus .inline-tag{
     position:absolute;
     top:50%;
     transform:translateY(-50%);
     white-space:nowrap;
-    color:#fff;
     font-weight:700;
-    font-size:clamp(14px, 2vh, 20px);
+    font-size:clamp(14px,2vh,20px);
+    color:#fff;
     text-decoration:none;
   }
-  .oof-tag:hover{ text-decoration:underline; }
 
-  /* foto → right of "f" */
-  .oof-mark-f .oof-tag-foto{
+  body.theme-outoffocus .inline-tag:hover{
+    text-decoration:underline;
+  }
+
+  /* “foto” à droite du dernier f (côté bleu clair) */
+  body.theme-outoffocus .mark-f .link-foto{
     left:120%;
   }
 
-  /* statistique → left of "s" */
-  .oof-mark-s .oof-tag-data{
+  /* “statistique” à gauche du dernier s (côté bleu foncé) */
+  body.theme-outoffocus .mark-s .link-data{
     right:120%;
     text-align:right;
   }
