@@ -190,24 +190,36 @@ main h1{
   /* Fond plein écran, split HORIZONTAL :
      haut bleu clair, bas bleu foncé */
 body.theme-outoffocus{
-  background:linear-gradient(
-    to bottom,
-    var(--blue-a) 0%,
-    var(--blue-a) 50%,
-    var(--blue-b) 50%,
-    var(--blue-b) 100%
-  );
+    background:linear-gradient(
+      to bottom,
+      var(--blue-a) 0%,
+      var(--blue-a) 50%,
+      var(--blue-b) 50%,
+      var(--blue-b) 100%
+    );
 
-  background-repeat:no-repeat;
-  background-size:100% 100%;
+    background-attachment:scroll;
+    background-repeat:no-repeat;
+    background-size:100% 100%;
 
-  /* ❗ Remove fixed attachment */
-  background-attachment:scroll;
-
-  overflow-y:auto;
-  overflow-x:hidden;
-  color:#fff;
+    overflow-x:hidden;
+    overflow-y:auto;
+    position:relative;
 }
+
+/* FULL WIDTH background cover — fixes black edges on iPhone & Android */
+body.theme-outoffocus::before{
+    content:"";
+    position:fixed;
+    top:0;
+    left:0;
+    width:100vw;      /* or 100% */
+    height:100vh;
+    background:inherit;   /* uses the gradient */
+    z-index:-1;
+    pointer-events:none;
+}
+
 /* Ensures dark blue covers any extra height */
 body.theme-outoffocus:after{
   content:"";
@@ -243,23 +255,28 @@ body.theme-outoffocus .hero-vertical-mobile{
 
 /* Lettres alignées à gauche */
 body.theme-outoffocus .hero-vertical-mobile .letters{
-  display:flex;
-  flex-direction:column;
-  align-items:flex-start;
-  justify-content:flex-start;
-  gap:clamp(6px,1.2vh,12px);
-  
-  color:#fff;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;   /* perfect left alignment */
+    justify-content:flex-start;
 
-  /* 🔥 PHONK style */
-  font-family: Impact, Haettenschweiler, "Arial Black", sans-serif;
-  font-weight:900;          /* ultra bold */
-  letter-spacing:-2px;      /* compressed, phonk vibe */
-  
-  font-size:clamp(52px, 12vh, 110px);
-  line-height:0.9;
+    gap:0.25em;
 
-  user-select:none;
+    /* 🌑 BRUTAL/PHONK FONT */
+    font-family: Impact, Haettenschweiler, "Arial Black", sans-serif;
+    font-weight:900;
+    font-stretch:condensed;   /* squeezes letters */
+    letter-spacing:-4px;      /* brutalist */
+    line-height:0.85;
+
+    /* HUGE CAPITALS + small lowercase = phonk difference */
+    text-transform:none;
+
+    color:#fff;
+    font-size:clamp(70px, 15vh, 160px);
+
+    padding-left:20px;
+    user-select:none;
 }
 
 
@@ -272,16 +289,13 @@ body.theme-outoffocus .hero-vertical-mobile .letters span{
   /* "foto" et "statistique" :
      même taille que OutOfFocus (1em),
      alignés sur le f et le s */
-  body.theme-outoffocus .inline-tag{
-    position:absolute;
-    top:50%;
-    transform:translateY(-50%);
-    white-space:nowrap;
-    font-size:1em;        /* même taille que les lettres */
-    font-weight:800;
+body.theme-outoffocus .inline-tag{
+    font:inherit;
     color:#fff;
     text-decoration:none;
-  }
+    margin-left:30px;  /* clean alignment */
+    white-space:nowrap;
+}
 
   body.theme-outoffocus .inline-tag:hover{
     text-decoration:underline;
