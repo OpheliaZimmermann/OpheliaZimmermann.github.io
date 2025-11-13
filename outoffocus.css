@@ -213,35 +213,35 @@ main h1{
   body.theme-outoffocus > footer{
     display:none !important;
   }
+/* Hero vertical en haut de la page, scrollable */
+body.theme-outoffocus .hero-vertical-mobile{
+  display:block !important;
+  position:relative;      /* plus de fixed */
+  min-height:100vh;       /* occupe au moins la hauteur d'écran */
+  padding:24px 20px 40px; /* un peu d'air */
+  background:transparent;
+  z-index:1;
+}
 
-  /* Hero vertical en plein écran */
-  body.theme-outoffocus .hero-vertical-mobile{
-    display:flex !important;
-    position:fixed;
-    inset:0;
-    z-index:9999;
-    align-items:center;
-    justify-content:center;
-    background:transparent;
-  }
+/* Lettres alignées à gauche */
+body.theme-outoffocus .hero-vertical-mobile .letters{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;   /* gauche */
+  justify-content:flex-start;
+  gap:clamp(6px,1.2vh,12px);
+  color:#fff;
+  font-weight:800;
+  font-size:clamp(44px,10vh,96px);
+  line-height:1;
+  user-select:none;
+}
 
-  body.theme-outoffocus .hero-vertical-mobile .letters{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    gap:clamp(6px,1.2vh,12px);
-    color:#fff;
-    font-weight:800;
-    font-size:clamp(44px,10vh,96px);
-    line-height:1;
-    user-select:none;
-  }
+body.theme-outoffocus .hero-vertical-mobile .letters span{
+  position:relative;
+  display:block;
+}
 
-  body.theme-outoffocus .hero-vertical-mobile .letters span{
-    position:relative;
-    display:block;
-  }
 
   /* "foto" et "statistique" :
      même taille que OutOfFocus (1em),
