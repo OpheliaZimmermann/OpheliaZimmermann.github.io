@@ -8,11 +8,10 @@
   --text:#e9eef2;
   --muted:#9aa4ad;
   --border:#1f2429;
-  --accent:#7f5af0;   /* accent for header/buttons */
+  --accent:#7f5af0;
 
-  /* Blues for OutOfFocus landing */
-  --blue-a:#17A2B8;   /* clair */
-  --blue-b:#001F3F;   /* foncé */
+  --blue-a:#17A2B8;  /* clair */
+  --blue-b:#001F3F;  /* foncé */
 }
 
 /* Base */
@@ -23,7 +22,7 @@ html,body{
   color:var(--text);
 }
 
-/* Header / footer (for pages that use them) */
+/* Header / footer (autres pages) */
 header{
   background:var(--accent);
 }
@@ -33,19 +32,19 @@ footer{
   color:var(--muted);
 }
 
-/* Generic card */
+/* Cartes génériques */
 .card{
   background:#111418;
   border:1px solid var(--border);
 }
 
-/* Container: slightly tighter on phones */
+/* Container */
 .container{ padding:14px; }
 @media (min-width:640px){
   .container{ padding:20px; }
 }
 
-/* Header brand + nav for pages that reuse it */
+/* Header brand + nav */
 .brand{
   color:#fff;
   text-decoration:none;
@@ -59,7 +58,7 @@ footer{
   border-color:rgba(255,255,255,.25);
 }
 
-/* Mobile nav */
+/* Nav mobile */
 @media (max-width:900px){
   nav{ justify-content:center; }
   .brand{
@@ -103,7 +102,7 @@ footer{
   .nav-links.open{ display:flex !important; }
 }
 
-/* Typography tweaks */
+/* Typo générique (autres pages) */
 main h1{
   font-size:clamp(1.5rem, 2.5vw + 0.9rem, 2.4rem);
   margin:16px 0 8px;
@@ -113,7 +112,7 @@ main h1{
   margin:0 0 14px;
 }
 
-/* Gallery layout (used on other pages) */
+/* Grille gallery (autres pages) */
 .gallery-grid{
   display:grid;
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
@@ -133,7 +132,6 @@ main h1{
   }
 }
 
-/* Gallery tiles */
 .tile{
   background:#111418;
   border:1px solid var(--border);
@@ -155,7 +153,7 @@ main h1{
   }
 }
 
-/* Buttons in dark theme */
+/* Boutons */
 .btn{
   background:#151a1f;
   color:#e9eef2;
@@ -168,59 +166,58 @@ main h1{
 }
 
 /* ===========================================================
-   OutOfFocus landing — vertical word on mobile only
-   (body has class="theme-outoffocus" in index.html)
+   OutOfFocus landing — MOBILE ONLY
+   body class="theme-outoffocus" dans index.html
    =========================================================== */
 
-/* Hidden by default (desktop) */
+/* caché sur desktop */
 .hero-vertical-mobile{
   display:none;
 }
 
-/* Mobile behaviour */
 @media (max-width:768px){
 
   html,body{
     height:100%;
+    margin:0;
+    padding:0;
   }
 
-  /* 1. Fond dégradé plein écran, scroll OK */
+  /* Fond plein écran, split HORIZONTAL :
+     haut bleu clair, bas bleu foncé */
   body.theme-outoffocus{
     background:linear-gradient(
-      to right,
-      var(--blue-b) 0%,
-      var(--blue-b) 50%,
+      to bottom,
+      var(--blue-a) 0%,
       var(--blue-a) 50%,
-      var(--blue-a) 100%
+      var(--blue-b) 50%,
+      var(--blue-b) 100%
     );
     background-attachment:fixed;
     background-repeat:no-repeat;
     background-size:100% 100%;
-    overflow-x:hidden;
-    overflow-y:auto;
+    overflow:hidden;      /* pas de scroll */
     color:#fff;
   }
 
-  /* 2. Sur mobile, on enlève les gros décors du fond :
-        - les deux colonnes bicolores fixes
-        - l'image OutOfFocus.svg
-  */
+  /* On masque tout le reste : bande bicolore, image, contenu */
+  body.theme-outoffocus > header,
   body.theme-outoffocus > .row.position-absolute-expand,
-  body.theme-outoffocus > .hero-art{
+  body.theme-outoffocus > .hero-art,
+  body.theme-outoffocus > main,
+  body.theme-outoffocus > footer{
     display:none !important;
   }
 
-  /* 3. Le mot vertical devient un hero plein écran en haut,
-        mais la page peut ensuite défiler vers les cartes
-  */
+  /* Hero vertical en plein écran */
   body.theme-outoffocus .hero-vertical-mobile{
     display:flex !important;
-    position:relative;
-    min-height:100vh;
+    position:fixed;
+    inset:0;
+    z-index:9999;
     align-items:center;
     justify-content:center;
     background:transparent;
-    z-index:1;
   }
 
   body.theme-outoffocus .hero-vertical-mobile .letters{
@@ -241,30 +238,31 @@ main h1{
     display:block;
   }
 
-  /* 4. Liens optionnels “foto” et “statistique” si tu les utilises
-       (sur la dernière f et la dernière s)
-  */
+  /* "foto" et "statistique" :
+     même taille que OutOfFocus (1em),
+     alignés sur le f et le s */
   body.theme-outoffocus .inline-tag{
     position:absolute;
     top:50%;
     transform:translateY(-50%);
     white-space:nowrap;
-    font-weight:700;
-    font-size:clamp(14px,2vh,20px);
+    font-size:1em;        /* même taille que les lettres */
+    font-weight:800;
     color:#fff;
     text-decoration:none;
   }
+
   body.theme-outoffocus .inline-tag:hover{
     text-decoration:underline;
   }
 
-  /* “foto” à droite du dernier f (côté bleu clair) */
-  body.theme-outoffocus .mark-f .link-foto{
+  /* "foto" à droite du f */
+  body.theme-outoffocus .mark-f .inline-tag{
     left:120%;
   }
 
-  /* “statistique” à gauche du dernier s (côté bleu foncé) */
-  body.theme-outoffocus .mark-s .link-data{
+  /* "statistique" à gauche du s */
+  body.theme-outoffocus .mark-s .inline-tag{
     right:120%;
     text-align:right;
   }
