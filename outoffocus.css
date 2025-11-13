@@ -189,21 +189,39 @@ main h1{
 
   /* Fond plein écran, split HORIZONTAL :
      haut bleu clair, bas bleu foncé */
-  body.theme-outoffocus{
-    background:linear-gradient(
-      to bottom,
-      var(--blue-a) 0%,
-      var(--blue-a) 50%,
-      var(--blue-b) 50%,
-      var(--blue-b) 100%
-    );
-    background-attachment:fixed;
-    background-repeat:no-repeat;
-    background-size:100% 100%;
-     overflow-y:auto;
-    overflow-x:hidden;      /* pas de scroll */
-    color:#fff;
-  }
+body.theme-outoffocus{
+  background:linear-gradient(
+    to bottom,
+    var(--blue-a) 0%,
+    var(--blue-a) 50%,
+    var(--blue-b) 50%,
+    var(--blue-b) 100%
+  );
+
+  background-repeat:no-repeat;
+  background-size:100% 100%;
+
+  /* ❗ Remove fixed attachment */
+  background-attachment:scroll;
+
+  overflow-y:auto;
+  overflow-x:hidden;
+  color:#fff;
+}
+/* Ensures dark blue covers any extra height */
+body.theme-outoffocus:after{
+  content:"";
+  display:block;
+  width:100%;
+  height:200vh;     /* huge buffer */
+  background:var(--blue-b);
+  margin-top:-1px;
+  z-index:-1;
+  position:absolute;
+  top:0;
+  left:0;
+}
+
 
   /* On masque tout le reste : bande bicolore, image, contenu */
   body.theme-outoffocus > header,
@@ -227,15 +245,23 @@ body.theme-outoffocus .hero-vertical-mobile{
 body.theme-outoffocus .hero-vertical-mobile .letters{
   display:flex;
   flex-direction:column;
-  align-items:flex-start;   /* gauche */
+  align-items:flex-start;
   justify-content:flex-start;
   gap:clamp(6px,1.2vh,12px);
+  
   color:#fff;
-  font-weight:800;
-  font-size:clamp(44px,10vh,96px);
-  line-height:1;
+
+  /* 🔥 PHONK style */
+  font-family: Impact, Haettenschweiler, "Arial Black", sans-serif;
+  font-weight:900;          /* ultra bold */
+  letter-spacing:-2px;      /* compressed, phonk vibe */
+  
+  font-size:clamp(52px, 12vh, 110px);
+  line-height:0.9;
+
   user-select:none;
 }
+
 
 body.theme-outoffocus .hero-vertical-mobile .letters span{
   position:relative;
