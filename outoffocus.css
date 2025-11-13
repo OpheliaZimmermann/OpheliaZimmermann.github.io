@@ -1,57 +1,119 @@
-/* ---------- Out of Focus mobile-first fixes ---------- */
+/* ===========================================
+   OutOfFocus — global styles (desktop first)
+   =========================================== */
 
-/* Palette / vibe (adjust if you want) */
+/* Palette / vibe */
 :root{
   --bg:#0c0c0d;
   --text:#e9eef2;
   --muted:#9aa4ad;
   --border:#1f2429;
-  --accent:#7f5af0; /* accent for header/buttons */
+  --accent:#7f5af0;   /* accent for header/buttons */
+
+  /* Blues for OutOfFocus landing */
+  --blue-a:#17A2B8;   /* clair */
+  --blue-b:#001F3F;   /* foncé */
 }
 
-/* Dark surfaces */
-html,body{ background:var(--bg); color:var(--text); }
-header{ background:var(--accent); }
-footer{ background:#0e1114; border-top-color:var(--border); color:var(--muted); }
-.card{ background:#111418; border-color:var(--border); }
+/* Base */
+html,body{
+  margin:0;
+  padding:0;
+  background:var(--bg);
+  color:var(--text);
+}
 
-/* Container: tighter on phones */
+/* Header / footer (for pages that use them) */
+header{
+  background:var(--accent);
+}
+footer{
+  background:#0e1114;
+  border-top:1px solid var(--border);
+  color:var(--muted);
+}
+
+/* Generic card */
+.card{
+  background:#111418;
+  border:1px solid var(--border);
+}
+
+/* Container: slightly tighter on phones */
 .container{ padding:14px; }
-@media (min-width:640px){ .container{ padding:20px; }}
+@media (min-width:640px){
+  .container{ padding:20px; }
+}
 
-/* Header: center brand on mobile, hide inline links behind menu */
-.brand{ color:#fff; }
-.nav-links a{ color:#fff; }
-.nav-links a:hover{ background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.25); }
+/* Header brand + nav for pages that reuse it */
+.brand{
+  color:#fff;
+  text-decoration:none;
+}
+.nav-links a{
+  color:#fff;
+  text-decoration:none;
+}
+.nav-links a:hover{
+  background:rgba(255,255,255,.08);
+  border-color:rgba(255,255,255,.25);
+}
 
-@media (max-width: 900px){
+/* Mobile nav */
+@media (max-width:900px){
   nav{ justify-content:center; }
-  .brand{ text-align:center; width:100%; }
+  .brand{
+    text-align:center;
+    width:100%;
+  }
 
   .menu-toggle{
-    display:block; position:absolute; right:14px; top:50%;
-    transform:translateY(-50%); color:#fff; border:1px solid rgba(255,255,255,.6);
-    background:transparent; padding:8px 12px; border-radius:999px;
+    display:block;
+    position:absolute;
+    right:14px;
+    top:50%;
+    transform:translateY(-50%);
+    color:#fff;
+    border:1px solid rgba(255,255,255,.6);
+    background:transparent;
+    padding:8px 12px;
+    border-radius:999px;
   }
 
   .nav-links{
     display:none !important;
-    position:absolute; right:14px; top:58px; z-index:1000;
-    flex-direction:column; gap:8px; padding:10px;
-    background:#ffffff; color:#111; border:1px solid #e6e6e6;
+    position:absolute;
+    right:14px;
+    top:58px;
+    z-index:1000;
+    flex-direction:column;
+    gap:8px;
+    padding:10px;
+    background:#ffffff;
+    color:#111;
+    border:1px solid #e6e6e6;
     border-radius:12px;
-    min-width: 180px;
+    min-width:180px;
   }
   .nav-links a{ color:#111; }
-  .nav-links a:hover{ background:#f4f8f9; border-color:#e2eef1; }
+  .nav-links a:hover{
+    background:#f4f8f9;
+    border-color:#e2eef1;
+  }
   .nav-links.open{ display:flex !important; }
 }
 
-/* Typography tighter on mobile */
-main h1{ font-size:clamp(1.5rem, 2.5vw + 0.9rem, 2.4rem); margin:16px 0 8px; }
-.lead{ color:var(--muted); margin:0 0 14px; }
+/* Typography tweaks */
+main h1{
+  font-size:clamp(1.5rem, 2.5vw + 0.9rem, 2.4rem);
+  margin:16px 0 8px;
+}
+.lead{
+  color:var(--muted);
+  margin:0 0 14px;
+}
 
-/* Gallery: make tiles smaller on phones so we get 2–3 columns */
+/* Gallery layout (used on other pages) */
 .gallery-grid{
   display:grid;
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
@@ -59,67 +121,106 @@ main h1{ font-size:clamp(1.5rem, 2.5vw + 0.9rem, 2.4rem); margin:16px 0 8px; }
   margin:14px 0 8px;
 }
 @media (min-width:640px){
-  .gallery-grid{ gap:14px; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); }
+  .gallery-grid{
+    gap:14px;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  }
 }
 @media (min-width:960px){
-  .gallery-grid{ gap:18px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+  .gallery-grid{
+    gap:18px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
 }
 
-/* Tiles: subtle mood + keep aspect */
-.tile{ background:#111418; border-color:var(--border); aspect-ratio:4/3; border-radius:12px; overflow:hidden; }
-.tile img{ width:100%; height:100%; object-fit:cover; display:block; filter:grayscale(15%) contrast(1.05); }
+/* Gallery tiles */
+.tile{
+  background:#111418;
+  border:1px solid var(--border);
+  aspect-ratio:4/3;
+  border-radius:12px;
+  overflow:hidden;
+}
+.tile img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  filter:grayscale(15%) contrast(1.05);
+}
 @media (hover:hover) and (pointer:fine){
-  .tile:hover img{ transform:scale(1.03); transition:transform .3s ease; }
+  .tile:hover img{
+    transform:scale(1.03);
+    transition:transform .3s ease;
+  }
 }
 
 /* Buttons in dark theme */
-.btn{ background:#151a1f; color:#e9eef2; border-color:#2a3239; }
-.btn.primary{ background:#7f5af0; border-color:#7f5af0; color:#fff; }
-/* ===== Mobile-only, full-background, vertical OutOfFocus ===== */
+.btn{
+  background:#151a1f;
+  color:#e9eef2;
+  border:1px solid #2a3239;
+}
+.btn.primary{
+  background:#7f5af0;
+  border-color:#7f5af0;
+  color:#fff;
+}
 
-/* ============= OutOfFocus — plein écran mobile ============= */
-.hero-vertical-mobile{ display:none; } /* caché par défaut (desktop) */
+/* ===========================================================
+   OutOfFocus landing — vertical word on mobile only
+   (body has class="theme-outoffocus" in index.html)
+   =========================================================== */
 
+/* Hidden by default (desktop) */
+.hero-vertical-mobile{
+  display:none;
+}
+
+/* Mobile behaviour */
 @media (max-width:768px){
 
-  /* 1. Fond plein écran, pas de scroll, pas de contenu derrière */
-  html, body{
+  html,body{
     height:100%;
-    margin:0;
-    padding:0;
   }
 
+  /* 1. Fond dégradé plein écran, scroll OK */
   body.theme-outoffocus{
-    overflow:hidden;
-    /* dégradé partout (gauche = bleu foncé, droite = bleu clair) */
-    background: linear-gradient(
+    background:linear-gradient(
       to right,
-      #001F3F 0%,
-      #001F3F 50%,
-      #17A2B8 50%,
-      #17A2B8 100%
+      var(--blue-b) 0%,
+      var(--blue-b) 50%,
+      var(--blue-a) 50%,
+      var(--blue-a) 100%
     );
     background-attachment:fixed;
     background-repeat:no-repeat;
     background-size:100% 100%;
+    overflow-x:hidden;
+    overflow-y:auto;
+    color:#fff;
   }
 
-  /* on masque tout le reste de la page sur mobile */
-  body.theme-outoffocus > header,
-  body.theme-outoffocus > main,
-  body.theme-outoffocus > footer{
+  /* 2. Sur mobile, on enlève les gros décors du fond :
+        - les deux colonnes bicolores fixes
+        - l'image OutOfFocus.svg
+  */
+  body.theme-outoffocus > .row.position-absolute-expand,
+  body.theme-outoffocus > .hero-art{
     display:none !important;
   }
 
-  /* 2. On affiche seulement le mot vertical */
+  /* 3. Le mot vertical devient un hero plein écran en haut,
+        mais la page peut ensuite défiler vers les cartes
+  */
   body.theme-outoffocus .hero-vertical-mobile{
     display:flex !important;
-    position:fixed;
-    inset:0;
-    z-index:9999;
+    position:relative;
+    min-height:100vh;
     align-items:center;
     justify-content:center;
     background:transparent;
+    z-index:1;
   }
 
   body.theme-outoffocus .hero-vertical-mobile .letters{
@@ -140,7 +241,9 @@ main h1{ font-size:clamp(1.5rem, 2.5vw + 0.9rem, 2.4rem); margin:16px 0 8px; }
     display:block;
   }
 
-  /* 3. Petits liens “foto” et “statistique” */
+  /* 4. Liens optionnels “foto” et “statistique” si tu les utilises
+       (sur la dernière f et la dernière s)
+  */
   body.theme-outoffocus .inline-tag{
     position:absolute;
     top:50%;
@@ -151,7 +254,6 @@ main h1{ font-size:clamp(1.5rem, 2.5vw + 0.9rem, 2.4rem); margin:16px 0 8px; }
     color:#fff;
     text-decoration:none;
   }
-
   body.theme-outoffocus .inline-tag:hover{
     text-decoration:underline;
   }
