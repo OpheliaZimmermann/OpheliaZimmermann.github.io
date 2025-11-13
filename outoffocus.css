@@ -209,6 +209,7 @@ main h1{
   body.theme-outoffocus > header,
   body.theme-outoffocus > .row.position-absolute-expand,
   body.theme-outoffocus > .hero-art,
+  body.theme-outoffocus > main,
   body.theme-outoffocus > footer{
     display:none !important;
   }
@@ -267,8 +268,8 @@ main h1{
 
   /* "statistique" à gauche du s */
   body.theme-outoffocus .mark-s .inline-tag{
-    right:120%;
-    text-align:right;
+    left:120%;
+    text-align:left;
   }
 }
 @media (max-width:768px){
@@ -288,3 +289,4 @@ main h1{
     margin:0;
   }
 }
+/* hide desktop hero + desktop text on mobile */
