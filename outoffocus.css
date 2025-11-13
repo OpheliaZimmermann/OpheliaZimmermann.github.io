@@ -164,6 +164,10 @@ main h1{
   border-color:#7f5af0;
   color:#fff;
 }
+/* mobile-intro = mobile only, caché sur desktop */
+.mobile-intro{
+  display:none;
+}
 
 /* ===========================================================
    OutOfFocus landing — MOBILE ONLY
@@ -196,7 +200,8 @@ main h1{
     background-attachment:fixed;
     background-repeat:no-repeat;
     background-size:100% 100%;
-    overflow:hidden;      /* pas de scroll */
+     overflow-y:auto;
+    overflow-x:hidden;      /* pas de scroll */
     color:#fff;
   }
 
@@ -204,7 +209,6 @@ main h1{
   body.theme-outoffocus > header,
   body.theme-outoffocus > .row.position-absolute-expand,
   body.theme-outoffocus > .hero-art,
-  body.theme-outoffocus > main,
   body.theme-outoffocus > footer{
     display:none !important;
   }
@@ -265,5 +269,22 @@ main h1{
   body.theme-outoffocus .mark-s .inline-tag{
     right:120%;
     text-align:right;
+  }
+}
+@media (max-width:768px){
+  .mobile-intro{
+    padding:40px 20px;
+    text-align:left;
+  }
+
+  .mobile-intro-inner{
+    max-width:260px;
+  }
+
+  .mobile-intro p{
+    font-size:1rem;
+    line-height:1.45;
+    color:#ffffff;
+    margin:0;
   }
 }
