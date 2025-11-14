@@ -164,6 +164,7 @@ main h1{
   border-color:#7f5af0;
   color:#fff;
 }
+
 /* mobile-intro = mobile only, caché sur desktop */
 .mobile-intro{
   display:none;
@@ -172,6 +173,7 @@ main h1{
 /* ===========================================================
    OutOfFocus landing — MOBILE ONLY
    body class="theme-outoffocus" dans index.html
+   AFFICHER SEULEMENT 2 PNG CLIQUABLES
    =========================================================== */
 
 /* caché sur desktop */
@@ -187,55 +189,15 @@ main h1{
     padding:0;
   }
 
-  /* Fond plein écran, split HORIZONTAL :
-     haut bleu clair, bas bleu foncé */
-body.theme-outoffocus{
-    background:linear-gradient(
-      to bottom,
-      var(--blue-a) 0%,
-      var(--blue-a) 50%,
-      var(--blue-b) 50%,
-      var(--blue-b) 100%
-    );
-
-    background-attachment:scroll;
-    background-repeat:no-repeat;
-    background-size:100% 100%;
-
-    overflow-x:hidden;
+  /* Fond simple (tu peux remettre un gradient si tu veux) */
+  body.theme-outoffocus{
+    background:#000;
+    color:#fff;
     overflow-y:auto;
-    position:relative;
-}
+    overflow-x:hidden;
+  }
 
-/* FULL WIDTH background cover — fixes black edges on iPhone & Android */
-body.theme-outoffocus::before{
-    content:"";
-    position:fixed;
-    top:0;
-    left:0;
-    width:100vw;      /* or 100% */
-    height:100vh;
-    background:inherit;   /* uses the gradient */
-    z-index:-1;
-    pointer-events:none;
-}
-
-/* Ensures dark blue covers any extra height */
-body.theme-outoffocus:after{
-  content:"";
-  display:block;
-  width:100%;
-  height:200vh;     /* huge buffer */
-  background:var(--blue-b);
-  margin-top:-1px;
-  z-index:-1;
-  position:absolute;
-  top:0;
-  left:0;
-}
-
-
-  /* On masque tout le reste : bande bicolore, image, contenu */
+  /* On masque TOUT le layout desktop sur mobile */
   body.theme-outoffocus > header,
   body.theme-outoffocus > .row.position-absolute-expand,
   body.theme-outoffocus > .hero-art,
@@ -243,90 +205,21 @@ body.theme-outoffocus:after{
   body.theme-outoffocus > footer{
     display:none !important;
   }
-/* Hero vertical en haut de la page, scrollable */
-body.theme-outoffocus .hero-vertical-mobile{
-  display:block !important;
-  position:relative;      /* plus de fixed */
-  min-height:100vh;       /* occupe au moins la hauteur d'écran */
-  padding:24px 20px 40px; /* un peu d'air */
-  background:transparent;
-  z-index:1;
-}
 
-/* Lettres alignées à gauche */
-body.theme-outoffocus .hero-vertical-mobile .letters{
-    display:flex;
-    flex-direction:column;
-    align-items:flex-start;   /* perfect left alignment */
-    justify-content:flex-start;
-
-    gap:0.25em;
-
-    /* 🌑 BRUTAL/PHONK FONT */
-    font-family: Impact, Haettenschweiler, "Arial Black", sans-serif;
-    font-weight:900;
-    font-stretch:condensed;   /* squeezes letters */
-    letter-spacing:-4px;      /* brutalist */
-    line-height:0.85;
-
-    /* HUGE CAPITALS + small lowercase = phonk difference */
-    text-transform:none;
-
-    color:#fff;
-    font-size:clamp(70px, 15vh, 160px);
-
-    padding-left:20px;
-    user-select:none;
-}
-
-
-body.theme-outoffocus .hero-vertical-mobile .letters span{
-  position:relative;
-  display:block;
-}
-
-
-  /* "foto" et "statistique" :
-     même taille que OutOfFocus (1em),
-     alignés sur le f et le s */
-body.theme-outoffocus .inline-tag{
-    font:inherit;
-    color:#fff;
-    text-decoration:none;
-    margin-left:30px;  /* clean alignment */
-    white-space:nowrap;
-}
-
-  body.theme-outoffocus .inline-tag:hover{
-    text-decoration:underline;
-  }
-
-  /* "foto" à droite du f */
-  body.theme-outoffocus .mark-f .inline-tag{
-    left:120%;
-  }
-
-  /* "statistique" à gauche du s */
-  body.theme-outoffocus .mark-s .inline-tag{
-    left:120%;
-    text-align:left;
-  }
-}
-@media (max-width:768px){
-  .mobile-intro{
-    padding:40px 20px;
-    text-align:left;
-  }
-
-  .mobile-intro-inner{
-    max-width:260px;
-  }
-
-  .mobile-intro p{
-    font-size:1rem;
-    line-height:1.45;
-    color:#ffffff;
+  /* On montre UNIQUEMENT la section mobile avec les 2 PNG */
+  body.theme-outoffocus .hero-vertical-mobile{
+    display:block !important;
     margin:0;
+    padding:0;
+  }
+
+  body.theme-outoffocus .hero-vertical-mobile .mobile-hero-image{
+    display:block;
+  }
+
+  body.theme-outoffocus .hero-vertical-mobile .mobile-hero-image img{
+    display:block;
+    width:100%;
+    height:auto;
   }
 }
-/* hide desktop hero + desktop text on mobile */
